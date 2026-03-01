@@ -1,0 +1,43 @@
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+<script type="text/javascript" language="javascript">
+<!--
+// Email obfuscator script 2.1 by Tim Williams, University of Arizona
+// Random encryption key feature coded by Andrew Moulden
+// This code is freeware provided these four comment lines remain intact
+// A wizard to generate this code is at http://www.jottings.com/obfuscator/
+{ coded = "ROpQZ.FQNNWp0@HSZ.TZR.HO"
+  key = "EVlKbv8tQ7phgrCHLJGiS4Oz6kRsF3dNXyT0Ao1j2wxWIYaPcmfZDe5qUBn9uM"
+  shift=coded.length
+  link=""
+  for (i=0; i<coded.length; i++) {
+    if (key.indexOf(coded.charAt(i))==-1) {
+      ltr = coded.charAt(i)
+      link += (ltr)
+    }
+    else {     
+      ltr = (key.indexOf(coded.charAt(i))-shift+key.length) % key.length
+      link += (key.charAt(ltr))
+    }
+  }
+document.write("<a href='mailto:"+link+"'>✉️ E-mail</a>&emsp;")
+}
+//-->
+</script>
+              <a href="https://philpeople.org/profiles/lucas-battich" target="_blank">PhilPeople</a>&emsp;
+              <a href="https://github.com/lbattich" target="_blank">Github</a>&emsp;
+              <a href="http://orcid.org/0000-0002-6102-7835" target="_blank">ORCID</a>&emsp;
+              <a href="https://www.researchgate.net/profile/Lucas_Battich" target="_blank">ResearchGate</a>&emsp;
+              <!-- <a href="https://osf.io/cvhnm/" target="_blank">OSF</a>&emsp; -->
+              <p>© Lucas Battich. {{ "now"|date("Y") }}</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript">
+$(document.links).filter(function() {
+    return this.hostname != window.location.hostname;
+}).attr('target', '_blank');
+</script>

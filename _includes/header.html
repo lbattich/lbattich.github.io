@@ -1,0 +1,27 @@
+<header id="header">
+    <!-- Navigation -->
+    <nav class="navbar navbar-dark" role="navigation">
+        <div class="container">
+            <a class="navbar-brand" href="{{ "index"|link }}" id="logo">{{ site_title }}</a>
+            <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">&#8801;</button>
+            <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+                <div class="nav navbar-nav">
+                    {% for page in pages if page.title %}
+                        {% if not (page.id starts with "portfolio/") and not (page.id starts with "index") and not (page.id starts with "doc/") and not (page.id starts with "writing/") and page.meta.hidden != true %}
+                            <a {% if page.id == current_page.id %} class="nav-item nav-link btn header-btn active" {% else %} class="nav-item nav-link btn header-btn" {% endif %} href="{{ page.url }}">{{ page.title }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        <!-- /.container -->
+        </div>
+    <!-- /.navbar-collapse -->
+    </nav>
+</header>
+
+<script>
+    r = Math.floor(150*Math.random());
+    g = Math.floor(150*Math.random());
+    b = Math.floor(150*Math.random());
+    $("#header").css( "background", "rgb("+r+","+g+","+b+")" );
+</script>

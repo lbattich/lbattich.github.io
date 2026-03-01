@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+_
+| |_   _  ___ __ _ ___
+| | | | |/ __/ _` / __|
+| | |_| | (_| (_| \__ \
+|_|\__,_|\___\__,_|___/
+
+ _           _   _   _      _
+| |__   __ _| |_| |_(_) ___| |__
+| '_ \ / _` | __| __| |/ __| '_ \
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+
+-->
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8" />
+
+    <title>{% if meta.title %}{{ meta.title }} | {% endif %}{{ site_title }}</title>
+    {% if meta.description %}
+        <meta name="description" content="{{ meta.description|striptags }}">
+    {% endif %}{% if meta.robots %}
+        <meta name="robots" content="{{ meta.robots }}">
+    {% endif %}
+    <meta name="author" content="Lucas Battich">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ theme_url }}/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="{{ theme_url }}/css/style.css" type="text/css" />
+
+    <script src="{{ theme_url }}/scripts/modernizr-2.6.1.min.js"></script>
+    <script src="{{ theme_url }}/scripts/jquery.min.js"></script>
+    <script src="{{ theme_url }}/scripts/tether.min.js"></script>
+    <script src="{{ theme_url }}/scripts/bootstrap.min.js"></script>
+
+    {% if meta.math %}
+    <script type="text/javascript" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@2.7.7/MathJax.js?config=AM_CHTML">
+    </script>
+    {% endif %}
+
+    {% include "piwik.twig" %}
+</head>
+<body>
+    <!-- header -->
+    {% include "header.twig" %}
+
+    <!-- Content -->
+    <section id="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 col-xs-4">
+                    {% include "portfolio-menu.twig" %}
+                </div>
+
+                <div class="col-md-10 col-xs-8">
+                    <div class="row text-center text-lg-left clearfix">
+
+                    {% for page in pages|shuffle if page.id starts with "portfolio/" and page.meta.images %}
+                        <div class="col-lg-3 col-md-4 col-xs-6 mh-100 d-block clearfix pb-3" style="margin-bottom: 30px; width: 230px;">
+                        	<div class="hovereffect">
+                                <a href="{{ page.url }}" class="d-block m-4 p-4">
+                                    {% set image = page.meta.images|split(',')|first %}
+                                    <img class="img-fluid img-grid" src="{{ base_url }}/assets/portfolio/{{ image }}" alt="{{ page.title }}">
+                                	<div class="overlay">
+							           <h2>{{ page.title }}</h2>
+							        </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    {% include "footer.twig" %}
+
+</body>
+</html>
