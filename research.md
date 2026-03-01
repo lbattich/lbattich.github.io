@@ -2,7 +2,7 @@
 Title: Research
 Author: Lucas Battich
 Description: Lucas Battich - Research
-Template: index
+layout: default
 Date: 1
 ---
 

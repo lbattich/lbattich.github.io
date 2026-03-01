@@ -2,7 +2,7 @@
 Title: Publications
 Author: Lucas Battich
 Description: Lucas Battich - Publications
-Template: index
+layout: default
 Date: 2
 ---
 

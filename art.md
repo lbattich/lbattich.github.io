@@ -2,7 +2,7 @@
 Title: Artistic works
 Author: Lucas Battich
 Description: Lucas Battich - Artistic works
-Template: index
+layout: default
 Date: 5
 ---
 <p><a class="btn btn-outline-primary" href="https://lucasbattich.com/portfolio/index">Selection of artworks</a></p>
