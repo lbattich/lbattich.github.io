@@ -15,7 +15,7 @@ The aim of this project is (1) to advance a suitable costruct of the sense of re
 Events: [Sense of Reality Workshop, 2024, Paris](https://sites.google.com/view/sense-reality-workshop-2024/home).
 
 <span class="small-wrap">
-[![](https://lucasbattich.com/assets/logos/anr.jpg) {.small}](https://anr.fr/) [![](https://lucasbattich.com/assets/logos/ens.png) {.small}](https://cognition.ens.fr/en) </span>
+[![](https://lucasbattich.com/assets/logos/anr.jpg) {: .small}](https://anr.fr/) [![](https://lucasbattich.com/assets/logos/ens.png) {: .small}](https://cognition.ens.fr/en) </span>
 
 --------------
 
@@ -26,7 +26,7 @@ Perceptual experience provides rational support for actions, beliefs, and intent
 To answer this question, one of the key factors that must be addressed is conscious access. If you are unaware that others distort your perceptual experience, are you responsible for the beliefs and behaviours based on that experience? What is, if any, the epistemic responsibility of other agents in distorting, or aiding, an individual’s perception?  Building on current models of perceptual metacognition, the project will (1) develop a principled way to determine experimentally whether social influences on perception are still minimally accessible to consciousness, and (2) examining how these social influences and their metacognitive profile modulate the epistemic role of perceptual experience in justifying actions and beliefs.
 
 <span class="small-wrap">
-[![](https://lucasbattich.com/assets/logos/fyssen.png) {.small}](http://www.fondationfyssen.fr/en/) [![](https://lucasbattich.com/assets/logos/ens.png) {.small}](https://cognition.ens.fr/en) </span>
+[![](https://lucasbattich.com/assets/logos/fyssen.png) {: .small}](http://www.fondationfyssen.fr/en/) [![](https://lucasbattich.com/assets/logos/ens.png) {: .small}](https://cognition.ens.fr/en) </span>
 
 --------------
 
@@ -43,4 +43,4 @@ The project's subgoals are to:
 - test the hypothesis that engaging in joint attention can affect the processing of multisensory information.
 
 <span class="small-wrap">
-[![](https://lucasbattich.com/assets/logos/gsn.jpg) {.small}](https://www.gsn.uni-muenchen.de/index.html) [![](https://lucasbattich.com/assets/logos/cvbe.jpg) {.small}](https://www.cvbers.com/) </span>
+[![](https://lucasbattich.com/assets/logos/gsn.jpg) {: .small}](https://www.gsn.uni-muenchen.de/index.html) [![](https://lucasbattich.com/assets/logos/cvbe.jpg) {: .small}](https://www.cvbers.com/) </span>

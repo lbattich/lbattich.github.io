@@ -34,5 +34,5 @@ Pavillon Jardin, 29 Rue d’Ulm
 75005 Paris, France
 
 <span class="small-wrap">
-[![](https://lucasbattich.com/assets/logos/ijn.png) {.small}](http://www.institutnicod.org/) 
-[![](https://lucasbattich.com/assets/logos/lnc2.png) {.small}](https://lnc2.dec.ens.fr/) [![](https://lucasbattich.com/assets/logos/ens-psl.png) {.small}](https://cognition.ens.fr/en)</span>
+[![](https://lucasbattich.com/assets/logos/ijn.png) {: .small}](http://www.institutnicod.org/) 
+[![](https://lucasbattich.com/assets/logos/lnc2.png) {: .small}](https://lnc2.dec.ens.fr/) [![](https://lucasbattich.com/assets/logos/ens-psl.png) {: .small}](https://cognition.ens.fr/en)</span>
