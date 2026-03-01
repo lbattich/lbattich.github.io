@@ -7,7 +7,7 @@ Images: me.png
 #layout: home
 ---
 
-I am a researcher in philosophy of mind and cognitive science at the [Institut Jean Nicod](http://www.institutnicod.org/), [École Normale Supérieure](https://www.ens.psl.eu/en) at Paris Sciences et Lettres University.
+!! I am a researcher in philosophy of mind and cognitive science at the [Institut Jean Nicod](http://www.institutnicod.org/), [École Normale Supérieure](https://www.ens.psl.eu/en) at Paris Sciences et Lettres University.
 
 My [research](https://lucasbattich.com/research) brings together perception, social cognition, and metacognition. For this, I combine philosophical methods with empirical work, conducting experiments and collaborating with cognitive neuroscientists.
 
