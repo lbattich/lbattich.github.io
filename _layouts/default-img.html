@@ -71,7 +71,7 @@ _
                                     </div>
                                 {% else %}
 
-                                {% set images = current_page.meta.images|split(',') %}
+                                {% assign images = current_page.meta.images | split: "," %}
                                 {% for image in images %}
                                     <img src="{{ base_url }}/assets/{{ image }}" class="img-fluid">
                                     </br>
