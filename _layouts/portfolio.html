@@ -40,18 +40,18 @@ _
         </script>
     {% endif %}
 
-    {% include "piwik.twig" %}
+    {% include piwik.html %}
 </head>
 <body>
     <!-- header -->
-    {% include "header.twig" %}
+    {% include header.html %}
 
     <!-- Content -->
     <section id="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-2 col-xs-4">
-                    {% include "portfolio-menu.twig" %}
+                    {% include "portfolio-menu.html" %}
                 </div>
 
                 <div class="col-md-10 col-xs-8">
@@ -85,7 +85,7 @@ _
     </section>
 
     <!-- footer -->
-    {% include "footer.twig" %}
+    {% include footer.html %}
 
 </body>
 </html>

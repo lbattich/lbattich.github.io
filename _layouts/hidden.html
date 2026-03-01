@@ -31,11 +31,11 @@ _
     <script src="{{ theme_url }}/scripts/modernizr-2.6.1.min.js"></script>
     <script src="{{ theme_url }}/scripts/jquery.min.js"></script>
 
-    {% include "piwik.twig" %}
+    {% include piwik.html %}
 </head>
 <body>
     <!-- header -->
-    {% include "header.twig" %}
+    {% include header.html %}
 
     <!-- Content -->
     <section id="content">
@@ -59,7 +59,7 @@ _
     </section>
 
     <!-- footer -->
-    {% include "footer.twig" %}
+    {% include footer.html %}
 
 </body>
 </html>
