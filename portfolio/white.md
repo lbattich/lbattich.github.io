@@ -5,7 +5,7 @@ author: Lucas Battich
 layout: portfolio
 category: Web-based
 images: 
-	- white.jpg
+  - white.jpg
 nav: 5
 ---
 ## White

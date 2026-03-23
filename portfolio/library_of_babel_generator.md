@@ -5,8 +5,8 @@ author: Lucas Battich
 layout: portfolio
 category: Web-based
 images: 
-	- babel1.png
-	- babel2.png
+  - babel1.png
+  - babel2.png
 nav: 5
 ---
 ## Library of Babel Volume Generator

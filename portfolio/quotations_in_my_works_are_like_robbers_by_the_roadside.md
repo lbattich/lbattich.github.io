@@ -5,7 +5,7 @@ author: Lucas Battich
 layout: portfolio
 category: Web-based
 images: 
-	- quotations.jpg
+  - quotations.jpg
 nav: 5
 ---
 ## Quotations In My Works Are Like Robbers By The Roadside

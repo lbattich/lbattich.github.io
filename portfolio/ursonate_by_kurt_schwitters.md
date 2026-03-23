@@ -5,11 +5,12 @@ author: Lucas Battich
 layout: portfolio
 category: Print
 images: 
-	- ursonate-cover.jpg
-	- ursonate1.png
-	- ursonate2.png
-	- ursonate4.png
-	- ursonate6.png
+  - ursonate-cover.jpg
+  - ursonate1.png
+  - ursonate2.png
+  - ursonate4.png
+  - ursonate6.png
+nav: 2
 ---
 ## Ursonate by Kurt Schwitters
 

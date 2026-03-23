@@ -5,7 +5,7 @@ author: Lucas Battich
 layout: portfolio
 category: Web-based
 images: 
-	- colourtones.jpg
+  - colourtones.jpg
 ---
 ## Colour Tones
 

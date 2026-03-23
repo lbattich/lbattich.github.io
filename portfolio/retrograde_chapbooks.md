@@ -5,11 +5,11 @@ author: Lucas Battich
 layout: portfolio
 category: Print
 images: 
-	- retrograde1.jpg
-	- retrograde2.jpg
-	- retrograde3.jpg
-	- retrograde4.jpg
-	- retrograde5.jpg
+  - retrograde1.jpg
+  - retrograde2.jpg
+  - retrograde3.jpg
+  - retrograde4.jpg
+  - retrograde5.jpg
 nav: 1
 ---
 ## Retrograde Chapbooks

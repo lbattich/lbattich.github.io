@@ -6,7 +6,7 @@ layout: portfolio
 category: Web-based
 nav: 1
 images: 
-	- progressive.gif
+  - progressive.gif
 ---
 ## Progressive Movement Towards Concrete Creation
 

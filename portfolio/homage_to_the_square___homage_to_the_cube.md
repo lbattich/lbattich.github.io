@@ -5,11 +5,11 @@ author: Lucas Battich
 layout: portfolio
 category: Web-based
 images: 
-	- homage-to-the-cube_1.jpg
-	- homage-to-the-cube_2.jpg
-	- square1.jpeg
-	- square2.jpeg
-	- square3.jpeg
+  - homage-to-the-cube_1.jpg
+  - homage-to-the-cube_2.jpg
+  - square1.jpeg
+  - square2.jpeg
+  - square3.jpeg
 nav: 2
 ---
 ## Homage to the Square / Homage to the Cube
