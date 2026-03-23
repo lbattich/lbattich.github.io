@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <!--
-_
-| |_   _  ___ __ _ ___
-| | | | |/ __/ _` / __|
-| | |_| | (_| (_| \__ \
-|_|\__,_|\___\__,_|___/
-
- _           _   _   _      _
-| |__   __ _| |_| |_(_) ___| |__
-| '_ \ / _` | __| __| |/ __| '_ \
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+                                  
+ _           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
 | |_) | (_| | |_| |_| | (__| | | |
 |_.__/ \__,_|\__|\__|_|\___|_| |_|
-
+ 
 -->
 <html lang="en" class="no-js">
 <head>
@@ -51,35 +51,16 @@ _
 
     <!-- Content -->
     <section id="content">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
-                <div class="col-md-2 col-xs-4">
-                    {% include "portfolio_menu.html" %}
+                <div class="col-sx-2">
+                    
                 </div>
-
-                <div class="col-md-10 col-xs-8">
-                    <div class="row">
-                        <div class="col-md-6 pull-md-left">
-                            {{ content }}
-                        </div>
-
-                        <div class="col-md-6 pull-md-right">
-                            {% if page.images or page.video %}
-                                <!-- pages with video only show video -->
-                                {% if page.video %}
-                                    <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" src="{{ page.video }}"></iframe>
-                                    </div>
-                                {% else %}
-                                <!-- show images -->
-                                    {% for image in page.images %}
-                                        <img src="{{ '/assets/' | append: image | relative_url }}" class="img-fluid">
-                                        <br>
-                                    {% endfor %}
-                                {% endif %}
-                            {% endif %}
-                        </div>
-                    </div>
+                <div class="col-sx-8">
+                    {{ content }}
+                </div>
+                <div class="col-sx-2">
+                    
                 </div>
             </div>
         </div>

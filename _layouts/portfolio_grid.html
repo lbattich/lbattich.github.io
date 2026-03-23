@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+_
+| |_   _  ___ __ _ ___
+| | | | |/ __/ _` / __|
+| | |_| | (_| (_| \__ \
+|_|\__,_|\___\__,_|___/
+
+ _           _   _   _      _
+| |__   __ _| |_| |_(_) ___| |__
+| '_ \ / _` | __| __| |/ __| '_ \
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+
+-->
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8" />
+
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+
+    {% if page.description %}
+        <meta name="description" content="{{ page.description }}">
+    {% endif %}
+
+    {% if page.robots %}
+        <meta name="robots" content="{{ page.robots }}">
+    {% endif %}
+
+    <meta name="author" content="Lucas Battich">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' | relative_url }}" type="text/css" />
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" type="text/css" />
+    <script src="{{ '/assets/scripts/modernizr-2.6.1.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/scripts/jquery.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/scripts/tether.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/scripts/bootstrap.min.js' | relative_url }}"></script>
+
+    {% if page.math %}
+        <script type="text/javascript" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@2.7.7/MathJax.js?config=AM_CHTML">
+        </script>
+    {% endif %}
+
+    {% include piwik.html %}
+</head>
+<body>
+    {% include header.html %}
+
+    <section id="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 col-xs-4">
+                    {% include portfolio_menu.html %}
+                </div>
+                <div class="col-md-10 col-xs-8">
+                    <div class="row text-center text-lg-left clearfix">
+
+                    {% assign portfolio_pages = site.pages | where_exp: "p", "p.url contains '/portfolio/'" %}
+                    {% for p in portfolio_pages %}
+                        {% unless p.url contains 'index' %}
+                            {% if p.images %}
+                            <div class="col-lg-3 col-md-4 col-xs-6 mh-100 d-block clearfix pb-3" style="margin-bottom: 30px; width: 230px;">
+                                <div class="hovereffect">
+                                    <a href="{{ p.url | relative_url }}" class="d-block m-4 p-4">
+                                        <img class="img-fluid img-grid"
+                                             src="{{ '/assets/portfolio/' | append: p.images[0] | relative_url }}"
+                                             alt="{{ p.title }}">
+                                        <div class="overlay">
+                                            <h2>{{ p.title }}</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endunless %}
+                    {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include footer.html %}
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% assign portfolio_pages = site.pages | where_exp: "p", "p.url contains '/portfolio/'" | sort: "title" %}
+
+{% for category in site.portfolio_categories %}
+    <nav class="nav nav-pills nav-stacked bubble">
+        <p class="text-xs-center">{{ category }}</p>
+        {% for p in portfolio_pages %}
+            {% unless p.url contains 'index' %}
+                {% if p.category == category %}
+                    <a href="{{ p.url | relative_url }}"
+                       class="nav-link{% if p.url == page.url %} active{% endif %}">
+                        {{ p.title }}
+                    </a>
+                {% endif %}
+            {% endunless %}
+        {% endfor %}
+    </nav>
+{% endfor %}
