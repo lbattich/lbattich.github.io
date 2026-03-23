@@ -16,7 +16,7 @@ Events: [Sense of Reality Workshop, 2024, Paris](https://sites.google.com/view/s
 
 <span class="small-wrap">
 	[![]({{ "/assets/logos/anr.jpg" | relative_url }}){: .small}](https://anr.fr/)
-	[![]({{ "/assets/logos/ens.jpg" | relative_url }}){: .small}](https://cognition.ens.fr/en)</span>
+	[![]({{ "/assets/logos/ens-psl.png" | relative_url }}){: .small}](https://cognition.ens.fr/en)</span>
 
 --------------
 
@@ -27,8 +27,8 @@ Perceptual experience provides rational support for actions, beliefs, and intent
 To answer this question, one of the key factors that must be addressed is conscious access. If you are unaware that others distort your perceptual experience, are you responsible for the beliefs and behaviours based on that experience? What is, if any, the epistemic responsibility of other agents in distorting, or aiding, an individual’s perception?  Building on current models of perceptual metacognition, the project will (1) develop a principled way to determine experimentally whether social influences on perception are still minimally accessible to consciousness, and (2) examining how these social influences and their metacognitive profile modulate the epistemic role of perceptual experience in justifying actions and beliefs.
 
 <span class="small-wrap">
-	[![]({{ "/assets/logos/fyssen.jpg" | relative_url }}){: .small}](http://www.fondationfyssen.fr/en/)
-	[![]({{ "/assets/logos/ens.jpg" | relative_url }}){: .small}](https://cognition.ens.fr/en)</span>
+	[![]({{ "/assets/logos/fyssen.png" | relative_url }}){: .small}](http://www.fondationfyssen.fr/en/)
+	[![]({{ "/assets/logos/ens-psl.png" | relative_url }}){: .small}](https://cognition.ens.fr/en)</span>
 
 --------------
 
