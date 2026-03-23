@@ -1,9 +1,9 @@
 ---
-Title: Artistic works
-Author: Lucas Battich
-Description: Lucas Battich - Artistic works
+title: Artistic works
+author: Lucas Battich
+description: Lucas Battich - Artistic works
 layout: default
-Date: 5
+permalink: /art/
 ---
 <p><a class="btn btn-outline-primary" href="https://lucasbattich.com/portfolio/index">Selection of artworks</a></p>
 

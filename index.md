@@ -4,7 +4,6 @@ description: Lucas Battich
 author: Lucas Battich
 layout: default_img
 images: me.png
-#layout: home
 ---
 
 I am a researcher in philosophy of mind and cognitive science at the [Institut Jean Nicod](http://www.institutnicod.org/), [École Normale Supérieure](https://www.ens.psl.eu/en) at Paris Sciences et Lettres University.

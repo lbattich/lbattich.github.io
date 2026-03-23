@@ -17,24 +17,27 @@ _
 <head>
     <meta charset="utf-8" />
 
-    <title>{% if meta.title %}{{ meta.title }} | {% endif %}{{ site_title }}</title>
-    {% if meta.description %}
-        <meta name="description" content="{{ meta.description|striptags }}">
-    {% endif %}{% if meta.robots %}
-        <meta name="robots" content="{{ meta.robots }}">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+
+    {% if page.description %}
+        <meta name="description" content="{{ page.description }}">
     {% endif %}
+
+    {% if page.robots %}
+        <meta name="robots" content="{{ page.robots }}">
+    {% endif %}
+
     <meta name="author" content="Lucas Battich">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="{{ theme_url }}/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="{{ theme_url }}/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' | relative_url }}" type="text/css" />
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" type="text/css" />
+    <script src="{{ '/assets/scripts/modernizr-2.6.1.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/scripts/jquery.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/scripts/tether.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/scripts/bootstrap.min.js' | relative_url }}"></script>
 
-    <script src="{{ theme_url }}/scripts/modernizr-2.6.1.min.js"></script>
-    <script src="{{ theme_url }}/scripts/jquery.min.js"></script>
-    <script src="{{ theme_url }}/scripts/tether.min.js"></script>
-    <script src="{{ theme_url }}/scripts/bootstrap.min.js"></script>
-
-    {% if meta.math %}
+    {% if page.math %}
         <script type="text/javascript" async
             src="https://cdn.jsdelivr.net/npm/mathjax@2.7.7/MathJax.js?config=AM_CHTML">
         </script>
@@ -61,21 +64,19 @@ _
                         </div>
 
                         <div class="col-md-6 pull-md-right">
-                            {% if current_page.meta.images %}
-
-                                {% if current_page.meta.video %}
+                            {% if page.images or page.video %}
+                                <!-- pages with video only show video -->
+                                {% if page.video %}
                                     <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" src={{ meta.video }}></iframe>
+                                        <iframe class="embed-responsive-item" src="{{ page.video }}"></iframe>
                                     </div>
                                 {% else %}
-
-                                {% set images = current_page.meta.images|split(',') %}
-                                {% for image in images %}
-                                    <img src="{{ base_url }}/assets/portfolio/{{ image }}" class="img-fluid">
-                                    </br>
-                                {% endfor %}
-
-                                {% endif%}
+                                <!-- show images -->
+                                    {% for image in page.images %}
+                                        <img src="{{ '/assets/' | append: image | relative_url }}" class="img-fluid">
+                                        <br>
+                                    {% endfor %}
+                                {% endif %}
                             {% endif %}
                         </div>
                     </div>

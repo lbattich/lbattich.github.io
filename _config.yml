@@ -47,6 +47,18 @@ kramdown:
   math_engine: mathjax
   syntax_highlighter: rouge
 
+nav:
+  - title: Research
+    url: /research/
+  - title: Publications
+    url: /publications/
+  - title: Academic CV
+    url: /cv/
+  - title: Teaching
+    url: /teaching/
+  - title: Artistic works
+    url: /art/
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to

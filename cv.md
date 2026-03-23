@@ -1,9 +1,9 @@
 ---
-Title: Academic CV
-Author: Lucas Battich
+title: Academic CV
+author: Lucas Battich
 description: Lucas Battich - Curriculum Vitae
-Date: 3
+permalink: /cv/
 layout: web
-Website: "/pdfjs/web/viewer.html?file=/assets/battich_cv.pdf"
-Height: 900px
+website: "/pdfjs/web/viewer.html?file=/assets/battich_cv.pdf"
+height: 900px
 ---

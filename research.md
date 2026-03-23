@@ -1,9 +1,9 @@
 ---
-Title: Research
-Author: Lucas Battich
-Description: Lucas Battich - Research
+title: Research
+author: Lucas Battich
+description: Lucas Battich - Research
 layout: default
-Date: 1
+permalink: /research/
 ---
 
 #### Socially shared perception and the sense of reality

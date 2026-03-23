@@ -17,19 +17,31 @@ _
 <head>
     <meta charset="utf-8" />
 
-    <title>{% if meta.title %}{{ meta.title }} | {% endif %}{{ site_title }}</title>
-    {% if meta.description %}
-        <meta name="description" content="{{ meta.description|striptags }}">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+
+    {% if page.description %}
+        <meta name="description" content="{{ page.description }}">
     {% endif %}
 
-    <meta name="robots" content="noindex, nofollow">
+    {% if page.robots %}
+        <meta name="robots" content="{{ page.robots }}">
+    {% endif %}
+
     <meta name="author" content="Lucas Battich">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-     <link rel="stylesheet" href="{{ theme_url }}/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="{{ theme_url }}/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' | relative_url }}" type="text/css" />
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" type="text/css" />
+    <script src="{{ '/assets/scripts/modernizr-2.6.1.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/scripts/jquery.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/scripts/tether.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/scripts/bootstrap.min.js' | relative_url }}"></script>
 
-    <script src="{{ theme_url }}/scripts/modernizr-2.6.1.min.js"></script>
-    <script src="{{ theme_url }}/scripts/jquery.min.js"></script>
+    {% if page.math %}
+        <script type="text/javascript" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@2.7.7/MathJax.js?config=AM_CHTML">
+        </script>
+    {% endif %}
 
     {% include piwik.html %}
 </head>

@@ -1,9 +1,9 @@
 ---
-Title: Publications
-Author: Lucas Battich
-Description: Lucas Battich - Publications
+title: Publications
+author: Lucas Battich
+description: Lucas Battich - Publications
 layout: default
-Date: 2
+permalink: /publications/
 ---
 
 ##### Comming soon

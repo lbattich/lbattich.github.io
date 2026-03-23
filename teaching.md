@@ -1,9 +1,9 @@
 ---
-Title: Teaching
-Author: Lucas Battich
-Description: Lucas Battich - Publications
+title: Teaching
+author: Lucas Battich
+description: Lucas Battich - Publications
 layout: default
-Date: 4
+permalink: /teaching/
 ---
 
 ##### Courses taught
