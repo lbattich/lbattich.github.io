@@ -2,7 +2,7 @@
 Title: Lucas Battich
 Description: Lucas Battich
 Author: Lucas Battich
-layout: default-img
+layout: default_img
 Images: me.png
 #layout: home
 ---
