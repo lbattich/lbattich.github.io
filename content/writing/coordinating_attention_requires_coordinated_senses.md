@@ -1,8 +1,8 @@
 ---
-Title: Coordinating attention requires coordinated senses
-Author: Lucas Battich
-Template: writ
-Citation: <meta name="citation_journal_title" content="Psychonomic Bulletin & Review"><meta name="citation_title" content="Coordinating attention requires coordinated senses"><meta name="citation_author" content="Lucas Battich, Merle Fairhurst, Ophelia Deroy"><meta name="citation_doi" content="10.3758/s13423-020-01766-z"><meta name="citation_publication_date" content="2020"><meta name="citation_language" content="English"><meta name="citation_keywords" content="Joint attention; Social cognition; Cross-modal attention; Multisensory perception">
+title: Coordinating attention requires coordinated senses
+author: Lucas Battich
+layout: writ
+citation: <meta name="citation_journal_title" content="Psychonomic Bulletin & Review"><meta name="citation_title" content="Coordinating attention requires coordinated senses"><meta name="citation_author" content="Lucas Battich, Merle Fairhurst, Ophelia Deroy"><meta name="citation_doi" content="10.3758/s13423-020-01766-z"><meta name="citation_publication_date" content="2020"><meta name="citation_language" content="English"><meta name="citation_keywords" content="Joint attention; Social cognition; Cross-modal attention; Multisensory perception">
 ---
 # Coordinating attention requires coordinated senses
 

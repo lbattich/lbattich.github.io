@@ -1,8 +1,8 @@
 ---
-Title: Notes
-Author:
-Template: hidden
-Hidden: true
+title: Notes
+author:
+layout: hidden
+hidden: true
 ---
 
 

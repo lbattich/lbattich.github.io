@@ -1,9 +1,9 @@
 ---
-Title: Temporal supervenience
-Author: Lucas Battich
-Template: index
-Hidden: true
-Math: true
+title: Temporal supervenience
+author: Lucas Battich
+layout: index
+hidden: true
+math: true
 ---
 
 ##Temporal Supervenience##

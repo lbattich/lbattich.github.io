@@ -4,5 +4,6 @@ description: Analytic Philosophy Generator
 author: Lucas Battich
 layout: web
 website: https://lucasbattich.com/apgen/
-height: 486px
+height: 30vw
+hidden: true
 ---

@@ -1,8 +1,8 @@
 ---
-Title: Are Non-Human Primates Gricean? Intentional Communication in Language Evolution
-Author: Lucas Battich
-Template: writ
-Citation: <meta name="citation_publisher" content="Central European University"><meta name="citation_journal_title" content="Pulse: A History, Sociology and Philosophy of Science Journal"><meta name="citation_title" content="Are Non-Human Primates Gricean? Intentional Communication in Language Evolution"><meta name="citation_author" content="Lucas Battich"><meta name="citation_volume" content="5"><meta name="citation_issue" content="1"><meta name="citation_publication_date" content="2018"><meta name="citation_firstpage" content="70"><meta name="citation_lastpage" content="88"><meta name="citation_issn" content="2416-111X"><meta name="citation_language" content="English"><meta name="citation_keywords" content="Pragmatics; Language evolution; Grice; Intentional communication">
+title: Are Non-Human Primates Gricean? Intentional Communication in Language Evolution
+author: Lucas Battich
+layout: writ
+citation: <meta name="citation_publisher" content="Central European University"><meta name="citation_journal_title" content="Pulse: A History, Sociology and Philosophy of Science Journal"><meta name="citation_title" content="Are Non-Human Primates Gricean? Intentional Communication in Language Evolution"><meta name="citation_author" content="Lucas Battich"><meta name="citation_volume" content="5"><meta name="citation_issue" content="1"><meta name="citation_publication_date" content="2018"><meta name="citation_firstpage" content="70"><meta name="citation_lastpage" content="88"><meta name="citation_issn" content="2416-111X"><meta name="citation_language" content="English"><meta name="citation_keywords" content="Pragmatics; Language evolution; Grice; Intentional communication">
 ---
 # Are Non-Human Primates Gricean? Intentional Communication in Language Evolution
 

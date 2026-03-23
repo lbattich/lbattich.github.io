@@ -1,8 +1,8 @@
 ---
-Title: Philosophy Quotes
-Author: Lucas Battich
-Template: hidden
-Hidden: true
+title: Philosophy Quotes
+author: Lucas Battich
+layout: hidden
+hidden: true
 ---
 
 ## Philosophy quotes taken out of context

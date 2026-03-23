@@ -1,8 +1,8 @@
 ---
-Title: Squaring the Stock Market Utopia
-Author: Lucas Battich
-Template: presentation
-Hidden: true
+title: Squaring the Stock Market Utopia
+author: Lucas Battich
+layout: presentation
+hidden: true
 ---
 
 # Squaring the Stock Market Utopia

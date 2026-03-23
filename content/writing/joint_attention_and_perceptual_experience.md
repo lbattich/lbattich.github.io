@@ -1,8 +1,8 @@
 ---
-Title: Joint attention and perceptual experience
-Author: Lucas Battich
-Template: writ
-Citation: <meta name="citation_journal_title" content="Synthese"><meta name="citation_title" content="Joint attention and perceptual experience"><meta name="citation_author" content="Lucas Battich, Bart Geurts"><meta name="citation_doi" content="10.1007/s11229-020-02602-6"><meta name="citation_publication_date" content="2020"><meta name="citation_language" content="English"><meta name="citation_keywords" content="Joint Attention; Perceptual Experience; Common Knowledge; Relationalism; Perception; John Campbell">
+title: Joint attention and perceptual experience
+author: Lucas Battich
+layout: writ
+citation: <meta name="citation_journal_title" content="Synthese"><meta name="citation_title" content="Joint attention and perceptual experience"><meta name="citation_author" content="Lucas Battich, Bart Geurts"><meta name="citation_doi" content="10.1007/s11229-020-02602-6"><meta name="citation_publication_date" content="2020"><meta name="citation_language" content="English"><meta name="citation_keywords" content="Joint Attention; Perceptual Experience; Common Knowledge; Relationalism; Perception; John Campbell">
 ---
 # Joint attention and perceptual experience
 

@@ -30,6 +30,10 @@ _
     <meta name="author" content="Lucas Battich">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {% if page.citation %}
+        {{ page.citation }}
+    {% endif %}
+
     <link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' | relative_url }}" type="text/css" />
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" type="text/css" />
     <script src="{{ '/assets/scripts/modernizr-2.6.1.min.js' | relative_url }}"></script>
@@ -44,6 +48,7 @@ _
     {% endif %}
 
     {% include piwik.html %}
+
 </head>
 <body>
     <!-- header -->
@@ -53,22 +58,10 @@ _
     <section id="content">
         <div class="container">
             <div class="row">
-                <div class="col-md-2 hidden-sm-down">
-                    <nav class="nav nav-pills nav-stacked bubble">
-                        {% assign hidden_pages = site.pages | where_exp: "p", "p.url contains '/hidden/'" | sort: "title" %}
-                        {% for p in hidden_pages %}
-                            {% unless p.url contains 'index' %}
-                                <a href="{{ p.url | relative_url }}"
-                                   class="nav-link{% if p.url == page.url %} active{% endif %}">
-                                    {{ p.title }}
-                                </a>
-                            {% endunless %}
-                        {% endfor %}
-                    </nav>
-                </div>
-
-                <div class="col-md-10">                   
+                <div class="col-sx-12 mx-10 mx-sm-0">
                     {{ content }}
+                    <hr />
+                    <a title="Add this article to your Mendeley library" href="http://www.mendeley.com/import/?url={{ current_page.url }}"><img src="http://www.mendeley.com/graphics/mendeley.png"/></a>
                 </div>
             </div>
         </div>

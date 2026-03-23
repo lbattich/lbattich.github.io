@@ -1,8 +1,8 @@
 ---
-Title: Hidden
-Author: Lucas Battich
-Template: hidden
-Hidden: true
+title: Hidden
+author: Lucas Battich
+layout: hidden
+hidden: true
 ---
 
 Welcome to the hidden trove!
