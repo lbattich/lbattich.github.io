@@ -4,7 +4,8 @@ description: White by Lucas Battich
 author: Lucas Battich
 layout: portfolio
 category: Web-based
-images: white.jpg
+images: 
+	- white.jpg
 nav: 5
 ---
 ## White

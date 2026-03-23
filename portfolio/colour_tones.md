@@ -4,7 +4,8 @@ description:
 author: Lucas Battich
 layout: portfolio
 category: Web-based
-images: colourtones.jpg
+images: 
+	- colourtones.jpg
 ---
 ## Colour Tones
 

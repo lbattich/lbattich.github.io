@@ -5,7 +5,8 @@ author: Lucas Battich
 layout: portfolio
 category: Web-based
 nav: 1
-images: progressive.gif
+images: 
+	- progressive.gif
 ---
 ## Progressive Movement Towards Concrete Creation
 

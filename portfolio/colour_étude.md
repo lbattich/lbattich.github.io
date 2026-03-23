@@ -5,7 +5,8 @@ author: Lucas Battich
 layout: portfolio
 category: Video
 video: //player.vimeo.com/video/87715367?color=ffffff&title=0&byline=0&portrait=0
-images: colouretude.jpg
+images: 
+	- colouretude.jpg
 nav: 1
 ---
 ## Colour Étude

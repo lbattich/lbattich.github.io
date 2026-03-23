@@ -5,7 +5,8 @@ author: Lucas Battich
 layout: portfolio
 category: Video
 video: //player.vimeo.com/video/91618549?color=ffffff&title=0&byline=0&portrait=0
-images: still.jpg
+images: 
+	- still.jpg
 ---
 ## A Battleship Potemkin
 

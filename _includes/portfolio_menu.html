@@ -1,4 +1,4 @@
-{% assign portfolio_pages = site.pages | where_exp: "p", "p.url contains '/portfolio/'" | sort: "title" %}
+{% assign portfolio_pages = site.pages | where_exp: "p", "p.url contains '/portfolio/'" | sort: "nav" %}
 
 {% for category in site.portfolio_categories %}
     <nav class="nav nav-pills nav-stacked bubble">

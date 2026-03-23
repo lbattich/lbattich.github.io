@@ -4,7 +4,8 @@ description:
 author: Lucas Battich
 layout: portfolio
 category: Web-based
-images: colourfield.jpg
+images: 
+	- colourfield.jpg
 ---
 ## Colour Field Generator
 

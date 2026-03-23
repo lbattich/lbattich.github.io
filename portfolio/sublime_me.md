@@ -4,7 +4,8 @@ description:
 author: Lucas Battich
 layout: portfolio
 category: Web-based
-images: sublimeme.jpg
+images: 
+	- sublimeme.jpg
 nav: 3
 ---
 ## Sublime Me

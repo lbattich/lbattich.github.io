@@ -5,7 +5,8 @@ author: Lucas Battich
 layout: portfolio
 category: Video
 video: //player.vimeo.com/video/162410393?color=ffffff&title=0&byline=0&portrait=0
-images: the-archive.jpg
+images: 
+	- the-archive.jpg
 nav: 2
 ---
 ## The Archive
