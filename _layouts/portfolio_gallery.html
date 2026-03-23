@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+_
+| |_   _  ___ __ _ ___
+| | | | |/ __/ _` / __|
+| | |_| | (_| (_| \__ \
+|_|\__,_|\___\__,_|___/
+
+ _           _   _   _      _
+| |__   __ _| |_| |_(_) ___| |__
+| '_ \ / _` | __| __| |/ __| '_ \
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+
+-->
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8" />
+
+        <meta charset="utf-8" />
+
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+
+    {% if page.description %}
+        <meta name="description" content="{{ page.description }}">
+    {% endif %}
+
+    {% if page.robots %}
+        <meta name="robots" content="{{ page.robots }}">
+    {% endif %}
+
+    <meta name="author" content="Lucas Battich">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' | relative_url }}" type="text/css" /> -->
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" type="text/css" />
+    <link rel="stylesheet" href="{{ '/assets/css/jquery.fancybox.min.css' | relative_url }}" type="text/css" />
+
+    <script src="{{ '/assets/scripts/modernizr-2.6.1.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/scripts/jquery.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/scripts/jquery.fancybox.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/scripts/tether.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/scripts/bootstrap.min.js' | relative_url }}"></script>
+
+    {% include piwik.html %}
+</head>
+<body>
+    <!-- header -->
+    {% include header.html %}
+
+    <!-- Content -->
+    <section id="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 col-xs-4">
+                    {% include portfolio-menu.html %}
+                </div>
+
+                <div class="col-md-10 col-xs-8">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            {{ content }}
+                         </div>
+
+                    </div>
+                    <div class="row text-center text-lg-left">
+                    {% for image in page.images %}
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-bottom: 25px;">
+                            <a href="{{ '/assets/portfolio/' | append: image | relative_url }}" data-fancybox="images" data-width="900" data-height="600">
+                                <img class="img-fluid" src="{{ '/assets/portfolio/' | append: image | relative_url }}" alt="">
+                            </a>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    {% include footer.html %}
+
+</body>
+</html>

@@ -10,7 +10,6 @@ images:
 	- ursonate2.png
 	- ursonate4.png
 	- ursonate6.png
-nav: 2
 ---
 ## Ursonate by Kurt Schwitters
 

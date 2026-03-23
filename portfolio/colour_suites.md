@@ -2,7 +2,7 @@
 title: Colour Suites
 description:
 author: Lucas Battich
-layout: portfolio-gallery
+layout: portfolio_gallery
 category: Photography
 images: 
 	- coloursuites/coloursuite1.jpg

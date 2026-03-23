@@ -4,7 +4,14 @@ description:
 author: Lucas Battich
 layout: portfolio
 category: Print
-images: sound-poems-cover.jpg,soundpoems1.png,soundpoems2.png,soundpoems3.png,soundpoems4.png,soundpoems5.png,soundpoems6.png
+images: 
+	- sound-poems-cover.jpg
+	- soundpoems1.png
+	- soundpoems2.png
+	- soundpoems3.png
+	- soundpoems4.png
+	- soundpoems5.png
+	- soundpoems6.png
 nav: 3
 ---
 ## Selected Sound Poems by Hugo Ball & Raoul Hausmann
