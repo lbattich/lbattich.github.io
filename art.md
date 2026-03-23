@@ -5,7 +5,8 @@ description: Lucas Battich - Artistic works
 layout: default
 permalink: /art/
 ---
-<p><a class="btn btn-outline-primary" href="https://lucasbattich.com/portfolio/index">Selection of artworks</a></p>
+<p><a class="btn btn-outline-primary" href="{{ '/portfolio/' | relative_url }}">Selection of artworks</a></p>
+
 
 #### Exhibitions
 
