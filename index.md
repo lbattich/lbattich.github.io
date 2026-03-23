@@ -31,7 +31,6 @@ Pavillon Jardin, 29 Rue d’Ulm
 75005 Paris, France
 
 <span class="small-wrap">
-[![]({{ "/assets/logos/ijn.png" | relative_url }}){: .small}](http://www.institutnicod.org/)
+[![]({{ "/assets/logos/ijn_dark.png" | relative_url }}){: .small}](http://www.institutnicod.org/)
 [![]({{ "/assets/logos/lnc2.png" | relative_url }}){: .small}](https://lnc2.dec.ens.fr/)
-[![]({{ "/assets/logos/ens-psl.png" | relative_url }}){: .small}](https://cognition.ens.fr/en)
-</span>
+[![]({{ "/assets/logos/ens_psl.png" | relative_url }}){: .small}](https://cognition.ens.fr/en)</span>

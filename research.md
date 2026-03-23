@@ -16,7 +16,7 @@ Events: [Sense of Reality Workshop, 2024, Paris](https://sites.google.com/view/s
 
 <span class="small-wrap">
 	[![]({{ "/assets/logos/anr.jpg" | relative_url }}){: .small}](https://anr.fr/)
-	[![]({{ "/assets/logos/ens-psl.png" | relative_url }}){: .small}](https://cognition.ens.fr/en)</span>
+	[![]({{ "/assets/logos/ens_psl.png" | relative_url }}){: .small}](https://cognition.ens.fr/en)</span>
 
 --------------
 
@@ -28,7 +28,7 @@ To answer this question, one of the key factors that must be addressed is consci
 
 <span class="small-wrap">
 	[![]({{ "/assets/logos/fyssen.png" | relative_url }}){: .small}](http://www.fondationfyssen.fr/en/)
-	[![]({{ "/assets/logos/ens-psl.png" | relative_url }}){: .small}](https://cognition.ens.fr/en)</span>
+	[![]({{ "/assets/logos/ens_psl.png" | relative_url }}){: .small}](https://cognition.ens.fr/en)</span>
 
 --------------
 
