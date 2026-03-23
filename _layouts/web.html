@@ -68,12 +68,12 @@ _
                     {{ content }}
                 </div>
                 <div class="col-sx-12">
-                    {% if current_page.meta.website %}
+                    {% if page.website %}
                         <iframe
-                        class="web"
-                        src="{{ meta.website }}"
-                        frameBorder="0"
-                        {% if current_page.meta.height %} height="{{ meta.height }};" {% else %} onload="resizeIframe(this)" {% endif %}
+                            class="web"
+                            src="{{ page.website }}"
+                            frameBorder="0"
+                            {% if page.height %} height="{{ page.height }}" {% else %} onload="resizeIframe(this)" {% endif %}
                         ></iframe>
                     {% endif %}
                 </div>
