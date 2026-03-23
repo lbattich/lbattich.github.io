@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Audio test - Play a random composition</title>
+  </head>
+  <body>
+  	<p>Choose frequency between 80Hz and 880Hz:  <input type="text" size="7" id="fr" value=""> <label for="fr">Hz</label></p>
+  	<p>Choose gain between 0.2 and 1.2:          <input type="text" size="7" id="gn" value=""> <label for="gn">Gain</label></p>
+  	<p>Choose duration between 1/50sec and 1sec: <input type="text" size="7" id="tm" value=""> <label for="tm">Seconds</label></p>
+  	<p>Choose waveform:                          <input type="text" size="7" id="vw" value=""> <label for="vw">wave</label></p>
+  	<br>
+    <button onclick="play()">play</button>
+    <button onclick="silence()">stop</button>
+    <button onclick="playIt(karawane)">play file</button>
+    <button onclick="stopIt()">stop file</button>
+    <script>
+    
+    var context = new AudioContext();
+    var tone = context.createOscillator();
+    var gainNode1 = context.createGain(); // Create gain node 1
+    var gainNode2 = context.createGain(); // Create gain node 1
+    var on=0;
+    var karawane = null;
+    var source = context.createBufferSource(); // creates a buffer sound source
+    
+    
+    // Load Hugo Ball karawane
+    
+    var request = new XMLHttpRequest();
+    request.open('GET', "Ball-Karawane.mp3", true);
+    request.responseType = 'arraybuffer';
+    request.onload = function() {
+        context.decodeAudioData(request.response, function(buffer) {karawane = buffer;});
+        }
+    request.send();
+    
+    tone.type = 0; // sine wave
+    tone.frequency.value = 0;
+	tone.connect(gainNode1); // Connect sound source tone to gain node 1
+	gainNode1.connect(context.destination);
+	gainNode1.gain.value = 0;
+	tone.start(0);
+	
+		function play(){
+			if (on==0){
+				on=1;
+				change();
+			}
+		}
+
+	function change() {
+		if (on==1){
+		// random gain between 0.2 and 1.2
+			var gain = 0.2+Math.random();
+			gainNode1.gain.value = gain;
+			document.getElementById("gn").value = gain;
+		
+		// random frequency between 80 and 880
+			var freq = 80 + Math.floor(801*Math.random());
+			tone.frequency.value = freq;
+			document.getElementById("fr").value = freq;
+		
+		//random wave shape
+			var wave = Math.floor(4*Math.random());
+			tone.type = wave; 
+			if (wave==0){document.getElementById("vw").value="Sine";}
+        	else if (wave==1){document.getElementById("vw").value="Square";}
+        	else if (wave==2){document.getElementById("vw").value="Sawtooth";}
+        	else if (wave==3){document.getElementById("vw").value="Triangle";}
+        
+		// random duration of note -  1/50sec to 1sec
+			var time = 20 + Math.floor(901*Math.random());
+			document.getElementById("tm").value = time/1000;
+			setTimeout(function(){change()},time);
+        }
+	}
+	
+  	function silence() {
+  		tone.frequency.value = 0;
+  		gainNode1.gain.value = 0;
+  		on=0;
+  	}
+    
+    function playIt(buffer) {
+        source.buffer = buffer;                    // tell the source which sound to play
+        source.connect(context.destination);       // connect to the context's destination
+        source.start(0);                           // play it now sam
+        }
+    
+    function stopIt() {
+        source.disconnect(0);
+    }
+  
+    </script>
+  </body>
+</html>

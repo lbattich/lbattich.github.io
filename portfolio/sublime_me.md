@@ -18,4 +18,4 @@ It allows you to experience your nearby geography through the multiple eyes of C
 
 Website, 2017.
 
-<p style="text-align: center;"><a class="btn btn-outline-primary" href="http://lucasbattich.com/sublimeme" target="_blank">Access Site Online</a></p>
+<p style="text-align: center;"><a class="btn btn-outline-primary" href="{{ '/assets/sites/sublimeme/' | relative_url }}" target="_blank">Access Site Online</a></p>

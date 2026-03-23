@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<!--
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+                                  
+ _           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+  
+
+
+HOMAGE TO THE SQUARE (AFTER JOSEF ALBERS)
+
+by LUCAS BATTICH, 2014
+
+
+-->
+  <head>
+    <meta name="author" content="Lucas Battich">
+    <meta name="description" content="HOMAGE TO THE SQUARE (AFTER JOSEF ALBERS) by LUCAS BATTICH, 2014">
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Homage to the Square (After Josef Albers) - Lucas Battich, 2014</title>
+    <style>
+  body{
+  background-color: black;
+  }
+ 
+  </style>
+  
+  </head>
+  <body style="text-align:center">
+  <canvas id="square"
+      onclick="insert()">
+      Aw noes! Your browser does not support the HTML5 canvas tag. Tech up! </canvas>
+   
+    <script language="JavaScript">
+var x=document.getElementById("square"); //declare global var x for canvas
+var ctx=x.getContext("2d");
+var img = new Image();
+var time = 5;
+img.src = "images/principe1.gif";
+//window.onload =  setInterval(function(){generate()},time);
+window.onload =  generate();
+window.onkeydown = function(event) {
+        var e = event.keyCode;
+        if (e==80 /*p*/){save();}
+        else if (e==37 /*left*/){left();}
+        else if (e==39 /*right*/){right();}
+        
+      }
+
+function insert()
+{
+var imgW=Math.floor((x.height+1)*Math.random());
+ctx.drawImage(img, (x.width/2)-(imgW/2), (x.height/2)-(imgW/2), imgW, imgW);
+}
+function right(){
+	time=time+3;
+	}
+	
+function left(){
+	time=time-3;
+	}
+function generate()
+      {
+      	x.height=window.innerHeight-30;
+      	x.width=window.innerWidth-30;
+        ctx.fillStyle=colourize(); //first colour
+ctx.fillRect(0,0,x.width,x.height);
+        var numb=Math.floor(Math.random()*4);
+        if (numb==0){
+        ctx.fillStyle=colourize(); //2nd colour
+ctx.fillRect(x.width*0.1,x.height*0.15,x.width*0.8,x.height*0.8);
+        ctx.fillStyle=colourize(); //3rd colour
+ctx.fillRect(x.width*0.2,x.height*0.3,x.width*0.6,x.height*0.6);
+        ctx.fillStyle=colourize(); //4th colour
+ctx.fillRect(x.width*0.3,x.height*0.45,x.width*0.4,x.height*0.4);  
+        }
+        else if (numb==1){
+        ctx.fillStyle=colourize(); //2nd colour
+ctx.fillRect(x.width*0.2,x.height*0.3,x.width*0.6,x.height*0.6);
+        ctx.fillStyle=colourize(); //3rd colour
+ctx.fillRect(x.width*0.3,x.height*0.45,x.width*0.4,x.height*0.4);  
+        }
+        else if (numb==2){
+        ctx.fillStyle=colourize(); //2nd colour
+ctx.fillRect(x.width*0.1,x.height*0.15,x.width*0.8,x.height*0.8);
+        ctx.fillStyle=colourize(); //3rd colour
+ctx.fillRect(x.width*0.3,x.height*0.45,x.width*0.4,x.height*0.4);    
+        }
+        else if (numb==3){
+        ctx.fillStyle=colourize(); //2nd colour
+ctx.fillRect(x.width*0.1,x.height*0.15,x.width*0.8,x.height*0.8);
+        ctx.fillStyle=colourize(); //3rd colour
+ctx.fillRect(x.width*0.2,x.height*0.3,x.width*0.6,x.height*0.6);
+        }
+		setTimeout(function(){generate()},time);
+                
+}
+
+function colourize()
+{
+var a = Math.floor(256*Math.random()).toString(16);
+var b = Math.floor(256*Math.random()).toString(16);
+var c = Math.floor(256*Math.random()).toString(16);
+if (a.length<2)
+	{
+	a="0"+a;
+	}
+if (b.length<2)
+	{
+	b="0"+b;
+	}
+if (c.length<2)
+	{
+	c="0"+c;
+	}
+var colour = "#"+a+b+c;
+return colour;
+}
+</script>
+  </body>
+</html>

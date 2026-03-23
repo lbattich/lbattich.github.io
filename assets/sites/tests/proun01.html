@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<!--
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+                                  
+ _           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+
+
+PROUN GENERATOR - PROTOTYPE
+by LUCAS BATTICH, 2014
+  
+-->
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta name="author" content="Lucas Battich">
+    <meta name="description" content="PROUN GENERATOR - PROTOTYPE by LUCAS BATTICH, 2014">
+    <title>PROUN GENERATOR - PROTOTYPE</title>
+  </head>
+  <body style="text-align:center; background-color:black">
+  <canvas id="proun" onclick="start()">
+      Aw noes! Your browser does not support the HTML5 canvas tag - try using
+      Chrome or Safari. Tech up! </canvas>
+      <p id="d"></p>
+   
+    
+    <script language="JavaScript">
+
+      
+var x=document.getElementById("proun"); //declare global var x for canvas
+
+var y1,y2,y3,x1,m1;
+
+var ctx=x.getContext("2d");
+window.onload = function(){start();setInterval(function(){choose()},1000)};
+//window.onload = function(){start()};
+window.onkeydown = function(event) {
+        var e = event.keyCode;
+        if (e==80 /*p*/){save();}
+      }
+      
+function start()
+{
+x.width=window.innerWidth-30;
+x.height=window.innerHeight-30;
+ctx.fillStyle=colourme()+"1)"; //first colour
+ctx.fillRect(0,0,x.width,x.height);
+ctx.fill();
+choose();
+}
+
+//choose btw different shapes
+function choose() {
+
+        var numb=Math.floor(Math.random()*4);
+        if (numb==0){circle()}
+        else if (numb==1){circle()}
+        else if (numb==2){four()}
+        else if (numb==3){four()}
+        }
+
+//functions:
+
+// circle:
+function circle()
+{
+var xc,yc,radio;
+yc=Math.floor((x.height+1)*Math.random());
+xc=Math.floor((x.width+1)*Math.random());
+radio=Math.floor((200)*Math.random());
+ctx.beginPath();
+ctx.arc(xc,yc,radio,0,2*Math.PI);
+ctx.stroke();
+}
+
+//create a 4 sided shape, filled with gradient
+function four() 
+{
+var x4,y4;
+y4=Math.floor((x.height+1)*Math.random());
+x4=Math.floor((x.width+1)*Math.random());
+ctx.beginPath();
+ctx.moveTo(x4,y4);
+y4=Math.floor((x.height+1)*Math.random());
+x4=Math.floor((x.width+1)*Math.random());
+ctx.lineTo(x4,y4);
+y4=Math.floor((x.height+1)*Math.random());
+x4=Math.floor((x.width+1)*Math.random());
+ctx.lineTo(x4,y4);
+y4=Math.floor((x.height+1)*Math.random());
+x4=Math.floor((x.width+1)*Math.random());
+ctx.lineTo(x4,y4);
+ctx.closePath();
+var grd=ctx.createLinearGradient(x.width/2,y4,x4,x.height);
+grd.addColorStop(0,colourme()+"1)");
+grd.addColorStop(1,colourme()+"1)");
+ctx.fillStyle=grd;
+ctx.fill();
+}
+     
+//choose a random colour
+function colourme()
+{
+var a = Math.floor(256*Math.random());
+var b = Math.floor(256*Math.random());
+var c = Math.floor(256*Math.random());
+var colour = "rgba("+a+","+b+","+c+",";
+return colour;
+}
+
+//save as jpg when key 'p' is pressed
+function save()
+{ 
+var d = x.toDataURL("image/jpeg");
+var w = window.open();
+var link = w.document.createElement('a');
+link.href = d
+link.download="proun.jpg";
+if (document.createEvent) {
+    var e = document.createEvent('MouseEvents');
+    e.initEvent('click' ,true ,true);
+    link.dispatchEvent(e);
+    return true;
+    }
+}
+</script>
+  </body>
+</html>

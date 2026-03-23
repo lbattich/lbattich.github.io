@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<!--
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+                                  
+ _           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+
+Quotations in my works are like robbers by the roadside - Lucas Battich
+2015
+
+-->
+
+<html>
+<head>
+   <meta content="text/html; charset=utf-8" http-equiv="content-type">
+   <meta name="author" content="Lucas Battich">
+   <meta name="description" content="Quotations in my works are like robbers by the roadside by Lucas Battich, 2015">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script type="text/javascript" src="list.js"></script>
+   <style>
+      body {
+        background: black;
+      }
+      .box{
+        position: absolute;
+        display: table;
+        width: 80vw;
+        height: 70vh;
+        top: 15%;
+		    left: 10%;
+      }
+      img {
+      	position: absolute;
+      	height: 100%;
+      	border: 0;
+      	text-align: left;
+      }
+      #quote {
+        position: relative;
+        text-align: left;
+        left: 54%;
+        width: 45%;
+        font-size: 2.9vw;
+        color: white;
+        font-family: "Times New Roman", Times, serif;
+      }
+      #name {
+        position: relative;
+        text-align: right;
+        left: 50%;
+        width: 50%;
+        font-size: 2.4vw;
+        color: white;
+        font-family: cursive;
+      }
+   </style>
+   <title>Quotations in my works are like robbers by the roadside - Lucas Battich</title>
+</head>
+<body>
+  <div class="box">
+  	<img id="image" alt="" />
+    <div id="quote">
+    </div>
+    <br><br>
+    <div id="name">
+    </div>
+  </div>
+
+  <script type="text/javascript">
+  	  var x = document.getElementById("image");
+      window.onload = change();
+      document.addEventListener("click", change);
+
+      $(document).keydown(function(e) {
+        if(e.which == 37) {change();} // left arrow
+        else if(e.which == 38) {change();} // up arrow
+        else if(e.which == 39) {change();} // right arrow
+        else if(e.which == 40) {change();} // down arrow
+      });
+
+      function change() {
+        x.src = "img/" + Math.floor(Math.random()*29) + ".jpg";
+        var quoteN = Math.floor(Math.random()*quotelist.length);
+        document.getElementById("quote").innerHTML = quotelist[quoteN];
+        var nameN = Math.floor(Math.random()*namelist.length);
+        document.getElementById("name").innerHTML = namelist[nameN];
+      }
+  </script>
+  
+</body>
+</html>

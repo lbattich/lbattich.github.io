@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="author" content="Lucas Battich">
+    <meta name="description" content="Converter - Chapter markers to timeline seconds">
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <style>
+    body
+      {
+        background-color:#FFF;
+      }
+      
+    </style>
+    <title>Converter - markers text to array in seconds</title>
+  </head>
+  <body>
+  <p>Convert from a QuickTime markers document to an array of timeline markers in seconds</p>
+    <textarea id="input" rows="10" cols="70"></textarea>
+    <p></p>
+    <button id="but" onclick="convert()">convert</button>
+    <p></p>
+    <textarea id="output" rows="10" cols="70">output</textarea>
+    <p id="d1"></p>
+    <p id="d2"></p>
+
+
+    
+    <script language="javascript">
+    
+    var time = ["lol"];
+    var rawinput = document.getElementById("input");
+    
+    function convert()
+    {
+     var str="";
+     var time = new Array();
+    var rawinput = document.getElementById("input");
+     // split it at "["  -->  "00:00:00.00] etc"
+     var split1 = rawinput.value.split("[");
+     
+     
+       // subtract 11 first characters from each element: "00:00:00.00"
+      for (var i=0;i<split1.length;i++)
+     {
+      var sub = split1[i].substr(0,11);
+      //if (i==0){time[0]=sub);}
+      //else{time.push(sub);}
+     time.push(sub);
+     }
+     
+     for (var ii=0;ii<time.length;ii++)
+     {
+     
+     // split it at the colons     
+     var a = time[ii].split(':');
+   
+     // convert to seconds
+     var seconds =(+a[0])*3600+(+a[1])*60+(+a[2]); 
+     if (ii==0){str=seconds;}
+     else{str= str+","+seconds;}
+     }
+     
+     document.getElementById("output").value = str;
+     
+     }
+
+      
+</script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Search API Sample</title>
+    <button onclick="getit()">click me</button>
+    <div id="content"></div>
+    <div id ="content2"></div>
+    <div id ="content3"></div>
+    <script>
+    var key = "AIzaSyCtL_LBU_BmfY6A5TecpbS4IUe-1y22huQ";
+      function hndlr(response) {
+      for (var i = 0; i < response.items.length; i++) {
+        var item = response.items[i];
+        // in production code, item.htmlTitle should have the HTML entities escaped.
+        document.getElementById("content").innerHTML += "<br>" + item.htmlTitle;
+        console.log(response.items.length);
+        //console.log(response.queries);
+        document.getElementById("content2").innerHTML += "<br>" + item.image.contextLink;
+      }
+    }
+    </script>
+    <script src="https://www.googleapis.com/customsearch/v1?key=AIzaSyCtL_LBU_BmfY6A5TecpbS4IUe-1y22huQ&amp;cx=015273968031423368204:zzyhsjoa290&amp;q=cars&amp;searchType=image&amp;num=10&amp;callback=hndlr">
+
+    </script>
+
+    <script>
+    var cx = '015273968031423368204:zzyhsjoa290';
+    var path = "https://www.googleapis.com/customsearch/v1?key=AIzaSyCtL_LBU_BmfY6A5TecpbS4IUe-1y22huQ&cx=015273968031423368204:zzyhsjoa290&q=cars";
+    
+    function getit() {
+        var data = httpGet(path);
+        console.log(data);
+    }
+
+    function httpGet(theUrl) {
+        var xmlHttp = null;
+
+        xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", theUrl, false );
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+    }
+    // my Key: AIzaSyCtL_LBU_BmfY6A5TecpbS4IUe-1y22huQ
+    // google wikipedia cref=http%3A%2F%2Fwww.guha.com%2Fcref_cse.xml
+    // cx = '015273968031423368204:zzyhsjoa290'
+    </script>
+    <script>
+  (function() {
+    var cx = '015273968031423368204:zzyhsjoa290';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+
+  </body>
+</html>

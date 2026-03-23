@@ -32,4 +32,7 @@ Edition of 10
 
 Freely availbale as e-book publications (PDF)
 
-<a href="http://lucasbattich.com/ebooks/1_Futurism_Marinetti_Retrograde_Chapbook.pdf" target="_blank">#1</a>, <a href="http://lucasbattich.com/ebooks/2_Dada_Ball_Retrograde_Chapbook.pdf" target="_blank">#2</a>, <a href="http://lucasbattich.com/ebooks/3_Dada_Tzara_Retrograde_Chapbook.pdf" target="_blank">#3</a>, <a href="http://lucasbattich.com/ebooks/4_De_Stijl_Retrograde_Chapbook.pdf" target="_blank">#4</a>
+<a href="{{ '/assets/ebooks/1_Futurism_Marinetti_Retrograde_Chapbook.pdf' | relative_url }}" target="_blank">#1</a>,
+<a href="{{ '/assets/ebooks/2_Dada_Ball_Retrograde_Chapbook.pdf' | relative_url }}" target="_blank">#2</a>,
+<a href="{{ '/assets/ebooks/3_Dada_Tzara_Retrograde_Chapbook.pdf' | relative_url }}" target="_blank">#3</a>,
+<a href="{{ '/assets/ebooks/4_De_Stijl_Retrograde_Chapbook.pdf' | relative_url }}" target="_blank">#4</a>

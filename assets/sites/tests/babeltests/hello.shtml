@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	  <meta charset="UTF-8">
+	  <title>hello</title>
+	</head>
+	<body>
+		<!--#exec cgi="/cgi-bin/hello.py" --> 
+	</body>
+</html>

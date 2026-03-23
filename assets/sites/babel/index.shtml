@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<!--
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+          
+_           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+
+
+
+Library of Babel
+Volume generator
+Lucas Battich
+2015
+-->
+
+<html>
+	<head>
+		<meta name="author" content="Lucas Battich">
+		<meta name="description" content="Library of Babel Volume Generator by Lucas Battich">
+		<meta content="text/html; charset=utf-8" http-equiv="content-type">
+		<link href="babel.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="js/jspdf.min.js"></script>
+		<script type="text/javascript" src="js/FileSaver.js"></script>
+		<title>The Library of Babel Volume Generator - Lucas Battich</title>
+		</head>
+	<body>
+		<div class="wrap">
+
+			<p><span class="title">Library of Babel Volume Generator</span></p>
+			<p class="white">by Lucas Battich</p>
+			<div class="bubble">
+				<p>In Jorge Luis Borges’ famous short story <i>The Library of Babel</i> the universe consists of a vast quantity of books, containing all that can ever be expressed in language. Each volume in the library is unique, although they all share the same format:</p>
+				<p class="q">The Library is total and its shelves register all the possible combinations of the twenty-odd orthographical symbols (a number which, though extremely vast, is not infinite): in other words, all that it is given to express, in all languages. Everything. […] <b>Each book is of four hundred and ten pages; each page, of forty lines, each line, of some eighty letters which are black in colour.</b> […] <b>All the books, no matter how diverse they might be, are made up of the same elements: the space, the period, the comma, the twenty-two letters of the alphabet.</b></p>
+				<p>This online-work generates an exemplar volume based on Borges' descriptions, by combining the 25 characters in a quasi-random order, resulting in a unique book on each run which can be easily downloaded in PDF format. This newly-minted volume is ultimately constrained by the web-browser algorithmic logic, which can be seen as a human limitation (“Man, the imperfect librarian”), a flawed attempt to mimic the divine combinations with the hope of chancing among the meaning to the universe, answers to eternal questions of humanity, “the catalogue of catalogues,” or our life’s vindication:</p>
+				<p class="q">A blasphemous sect suggested that the searches should cease and that all should juggle letters and symbols until they constructed, by an improbable gift of chance, these canonical books.</p>
+			</div>
+			<br>
+			<button type="button" onclick="savepdf()"><i>Get your volume!</i></button>
+			<br><br>
+
+				<div class="bubble">
+					<p>Visit the Library of Babel Volume Archive</p>
+					<p><a href="archive/">See all volumes generated so far!</a></p>
+				</div>
+			<br>
+			<div class="bubble">
+				<p><i>Note on the alphabet: </i>Borges provides no clear information on which twenty-two letters he had in mind. Perhaps it is a reference to the number of letters of the Hebrew language, so dear to him as student of the Kabbalah, but in this case the inclusion of the period and comma is problematic. I have chosen to use the Classical Latin Alphabet (composed of 23 letters), minus the Y, which was a late addition, and does not figure in Old Latin. This remains a conjectural and idiosyncratic choice nevertheless. 
+				</p>
+			</div>
+			<p class="little white">Quotations of Borges are taken from James E. Irby’s translation.<br>
+			JavaScript PDF encription via <a href="http://parall.ax/products/jspdf" target="_blank">jsPDF</a><br>
+			Lucas Battich 2015</p>
+
+		</div>
+		
+		<script language="javascript" type="text/javascript">
+			//window.jsPDF = window.jspdf.jsPDF;
+			
+			// const myip = '<!--#echo var="REMOTE_ADDR"-->';
+			const string = "ABCDEFGHIJKLMNOPQRSTVZ .,";
+
+			function generate() {
+				var page = "";
+				for(var i=0; i < 40; i++){
+					page += makeline() + "\n" + "\n";}
+				return page;
+			}
+
+			function makeline() {
+				var line = "";
+				for(var i=0; i < 80; i++){
+					line += string.charAt(Math.floor(Math.random() * string.length));}
+				return line;
+			}
+			
+			function savepdf() {
+				var vol = Math.floor(Math.pow(10,16)*Math.random());
+				var doc = new jsPDF("p", "mm", "a4");
+
+				doc.setProperties({
+					title: 'Library of Babel Volume #' + vol,
+					subject: 'Library of Babel Volume',		
+					author: 'Library of Babel',
+					keywords: 'generated, library, babel',
+					creator: 'Unknown'
+				});
+				doc.setDrawColor(0);
+				doc.setFillColor(200);
+				doc.rect(0, 0, 210, 297, 'F');
+				doc.setLineWidth(0.8);
+				doc.rect(25, 25, 160, 247); //x1, y1, w, h
+				doc.setLineWidth(0.3);
+				doc.rect(26.5, 26.5, 157, 244);
+				doc.rect(28, 28, 154, 241);
+				doc.setFont('Times-Roman');
+				doc.setFontSize(19);
+				doc.text(37, 50, "Library of Babel Volume No. " + vol);
+				doc.setFontSize(15);
+				doc.text(37, 70, "Retrieved on " + day());
+				doc.setFont('Courier');
+				doc.setFontSize(8);
+				for( var i=0; i < 410; i++ ) {
+					doc.addPage();
+					doc.text(32, 25, generate());
+				}
+				var pdf = doc.output(); 
+				var data = new FormData();
+				data.append("name" , "Library of Babel Volume #" + vol + ".pdf");
+				data.append("data" , pdf);
+				var xhr = new XMLHttpRequest();
+				xhr.open( 'post', 'php/upload.php', true );
+				xhr.send(data);
+				doc.save('Library of Babel Volume #' + vol + '.pdf');
+			}
+
+			function day() {
+				const today = new Date();
+				const localdate = today.toUTCString();
+				return localdate
+			}
+		</script>
+
+	</body>
+</html>

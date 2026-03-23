@@ -1,0 +1,57 @@
+body {
+	margin: 0px;
+	background-color: black;
+	overflow: hidden;
+}
+.container {
+	position: relative;
+	width: 50vmin;
+	height: 50vmin;
+	margin-right: auto;
+	margin-left: auto;
+	top: 50vh;
+	margin-top: -25vmin;
+	perspective: 1000px;
+	transition: all 1s;
+}
+@keyframes spinner {
+	from { transform: rotateY(0deg); }
+	to { transform: rotateY(-360deg); }
+}
+#cube {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+	animation-name: spinner;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-play-state: running;
+	animation-duration: 12s;
+
+}
+.container:hover > #cube { animation-play-state: paused; }
+.container:active { perspective: 400px; }
+#cube figure {
+	margin: 0;
+	width: 50vmin;
+	height: 50vmin;
+	display: block;
+	position: absolute;
+	transition: background-color 2.5s;
+}
+#cube .front  {display: none;}
+#cube .bottom {background-color: DimGray}
+
+#cube .colour2  { transform: scale(0.8,0.8) translateY(3vmin); }
+#cube .colour3  { transform: scale(0.75,0.75) translateY(3.4vmin); }
+#cube .colour4  { transform: scale(0.666,0.666) translateY(3.9vmin); }
+#cube .front  { transform: rotateY(   0deg ) translateZ( 25vmin ); }
+#cube .back   { transform: rotateY( 180deg ) translateZ( 25vmin ); }
+#cube .right  { transform: rotateY(  90deg ) translateZ( 25vmin ); }
+#cube .left   { transform: rotateY( -90deg ) translateZ( 25vmin ); }
+#cube .top    { transform: rotateX(  90deg ) translateZ( 25vmin ); }
+#cube .bottom { transform: rotateX( -90deg ) translateZ( 25vmin ) scale(2); }
+#cube { transform: translateZ( -25vmin ); }
+
+/*lucasbattich.com*/

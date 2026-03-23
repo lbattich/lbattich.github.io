@@ -1,0 +1,44 @@
+@font-face {
+    font-family: SourceCodePro;
+    font-style: normal;
+    font-weight: 300;
+    src: url(SourceCodePro-Regular.otf);
+}
+
+html,
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+    background-color: #DCDCDC;
+}
+
+/* Scale canvas with resize attribute to full size */
+canvas[resize] {
+    width: 100vw;
+    height: 100vh;
+}
+
+.foot {
+	position: absolute;
+	bottom: 0;
+	width: 100vw;
+	font-family: SourceCodePro, Monaco, monospace;
+	background-color: black;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+
+}
+
+/*#ticker {
+	float: left;
+}
+
+#market {
+	float: center;
+}
+
+#date {
+	float: right;
+}*/

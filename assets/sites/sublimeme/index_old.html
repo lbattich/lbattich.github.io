@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<!--
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+                                  
+ _           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+
+
+-->
+  <head>
+    <meta name="author" content="Lucas Battich">
+    <meta name="description" content="SUBLIME ME by LUCAS BATTICH">
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Sublime Me / Rotterdam- Lucas Battich</title>
+    <style type="text/css">
+      body {
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 96vh;
+        width: 99vw;
+        }
+      div{
+        display: none;  
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="578" height="400" onclick="travel()"></canvas>
+    <div>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/h0ZhcOmYwIk?autoplay=1&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+        var wanderer = new Image();
+        wanderer.onload = travel();
+        wanderer.src = "wanderer-sq.png";
+
+        function travel() {
+          var imageObj = new Image();
+
+          imageObj.onload = function() {
+            canvas.width=window.innerHeight*0.9;
+            canvas.height=window.innerHeight*0.9;
+            context.drawImage(imageObj, 0, 0, canvas.width, canvas.height);
+            context.drawImage(wanderer, canvas.width/5, canvas.height/3.9, canvas.width/1.2, canvas.height/1.2);
+          };
+
+          // imageObj.crossOrigin = "Anonymous";
+          var coordinates = randomGeo(51.9244201,4.477732500000002,1000); // Rotterdam with radius 2000m
+          console.log(coordinates.latitude);
+          console.log(coordinates.longitude2);
+
+          imageObj.src = "https://maps.googleapis.com/maps/api/streetview?size=640x640&location="+coordinates.latitude+","+coordinates.longitude+"&fov=100&pitch=20&key=AIzaSyD5UB0h_yIsdmRfZ11dxn-6fB175f3oUFU";
+          setTimeout(travel,3000);
+        }
+      
+      function randomGeo(centerLatitude, centerLongitude, radius) {
+        var y0 = centerLatitude;
+        var x0 = centerLongitude;
+        var rd = radius / 111300; //about 111300 meters in one degree
+
+        var u = Math.random();
+        var v = Math.random();
+
+        var w = rd * Math.sqrt(u);
+        var t = 2 * Math.PI * v;
+        var x = w * Math.cos(t);
+        var y = w * Math.sin(t);
+
+        //Adjust the x-coordinate for the shrinking of the east-west distances
+        var xp = x / Math.cos(y0);
+
+        var newlat = y + y0;
+        var newlon = x + x0;
+        var newlon2 = xp + x0;
+
+        return {
+            'latitude': newlat.toFixed(5),
+            'longitude': newlon.toFixed(5),
+            'longitude2': newlon2.toFixed(5),
+        };
+      }
+    </script>
+
+  </body>
+</html>
+
+
+51.93326, 4.52091
+
+

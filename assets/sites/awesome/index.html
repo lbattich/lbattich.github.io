@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<!--
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+                                  
+ _           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+  
+
+-->
+
+<html>
+  <head>
+
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta name="author" content="Lucas Battich">
+    <meta name="description" content="Lucas Battich">
+    <title>yes you are!</title>
+    <style type="text/css">
+      body {
+        -webkit-transition: background-color 1500ms linear;
+        -moz-transition: background-color 1500ms linear;
+        -o-transition: background-color 1500ms linear;
+        -ms-transition: background-color 1500ms linear;
+        transition: background-color 1500ms linear;
+        background-color: #000;
+      }
+      @font-face {
+        font-family: FacileSans;
+        font-style: normal;
+        src: url(FacileSans.otf);
+        }
+       @font-face {
+        font-family: PaytoneOne;
+        font-style: normal;
+        src: url(PaytoneOne-Regular.ttf);
+       } 
+      #box{
+        position: absolute;
+        display: table;
+        width: 80vw;
+        height: 60vh;
+        top: 16%;
+        left: 10%;
+        text-align: center;
+        font-family: FacileSans, Helvetica, sans-serif;
+        color: white;
+        }
+      #happy {
+        font-family: PaytoneOne, Helvetica, sans-serif;
+        font-size: 11vw; 
+        text-shadow: 
+        0 -1px 0 #fff, 
+        0 1px 0 #2e2e2e, 
+        0 2px 0 #2c2c2c, 
+        0 3px 0 #2a2a2a, 
+        0 4px 0 #282828, 
+        0 5px 0 #262626, 
+        0 6px 0 #242424, 
+        0 7px 0 #222, 
+        0 8px 0 #202020, 
+        0 9px 0 #1e1e1e, 
+        0 10px 0 #1c1c1c, 
+        0 11px 0 #1a1a1a, 
+        0 12px 0 #181818, 
+        0 13px 0 #161616, 
+        0 14px 0 #141414, 
+        0 15px 0 #121212, 
+        0 22px 30px rgba(0, 0, 0, 0.9);
+        -webkit-animation: fadein 2s; /* Safari, Chrome and Opera */
+	       -moz-animation: fadein 2s; /* Firefox */
+	        -ms-animation: fadein 2s; /* Internet Explorer */
+	         -o-animation: fadein 2s; /* Opera */
+	            animation: fadein 2s;
+      }
+      .emoticon{
+        z-index: -10;
+        font-size: 4em;
+	    -webkit-animation: fadein 0.8s; /* Safari, Chrome and Opera */
+	       -moz-animation: fadein 0.8s; /* Firefox */
+	        -ms-animation: fadein 0.8s; /* Internet Explorer */
+	         -o-animation: fadein 0.8s; /* Opera */
+	            animation: fadein 0.8s;
+      }
+
+      @keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+      /* Firefox < 16 */
+      @-moz-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+      /* Safari, Chrome and Opera > 12.1 */
+      @-webkit-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+      /* Internet Explorer */
+      @-ms-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+      /* Opera < 12.1 */
+      @-o-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div id="box">
+		<span id="happy"></span>
+    </div>
+    <script language="JavaScript">
+
+      var txt = ["YOU ARE AWESOME", "CHOCOLATE"];
+      var counter = 0;
+      //setTimeout(red,300);
+      change();
+      setTimeout(red,200);
+      // emoticon()
+      function red(){
+        document.getElementById("happy").innerHTML = txt[counter];
+        // counter++;
+        // if (counter == txt.length) {counter =0 ;}
+        // setTimeout(blank,7000);
+      }
+
+      function blank(){
+        document.getElementById("happy").innerHTML = " ";
+	    setTimeout(red,500);
+      }
+
+      function change() {
+        r = Math.floor(150*Math.random());
+        g = Math.floor(150*Math.random());
+        b = Math.floor(150*Math.random());
+        document.body.style.backgroundColor = "rgb("+r+","+g+","+b+")";
+        setTimeout(change,3000);
+      }
+	  
+
+      // function emoticon() {
+
+      //   var fullWidth = window.innerWidth;
+      //   var fullHeight = window.innerHeight;
+
+      //   var text = ["😁", "😂", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "😌", "😍", "😏", "😘", "😚", "😝", "💖", "💗", "💘", "💚", "💜"];
+
+      //   var elem = document.createElement("div");
+      //   var rdm = Math.round(Math.random() * 20);
+      //   elem.textContent = text[rdm];
+      //   elem.style.position = "absolute";
+      //   elem.className = "emoticon"; 
+      //   elem.style.left = Math.round(Math.random() * (fullWidth-100)) + "px";
+      //   elem.style.top = Math.round(Math.random() * (fullHeight-100)) + "px";
+      //   document.body.appendChild(elem);
+      //   setTimeout(emoticon,4000);
+      // }
+
+    </script>
+  </body>
+</html>

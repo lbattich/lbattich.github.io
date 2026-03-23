@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<!--
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+          
+_           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+
+
+
+Library of Babel
+Volume generator
+Lucas Battich
+-->
+
+<html>
+	<head>
+		<meta name="author" content="Lucas Battich">
+		<meta name="description" content="Library of Babel Volume Generator by Lucas Battich">
+		<meta content="text/html; charset=utf-8" http-equiv="content-type">
+		<script src="http://code.jquery.com/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="js/jspdf.js"></script>
+		<script type="text/javascript" src="js/FileSaver.js"></script>
+	<script type="text/javascript" src="js/BlobBuilder.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- This script and many more are available free online at -->
+<!-- The JavaScript Source!! http://www.javascriptsource.com -->
+
+<!-- Begin
+// http://www.kdcgrohl.com
+
+// Depending on your server set-up,
+// you may need to use the ".shtml"
+// extension [instead of the "html"
+// or "htm"] as the script uses Server
+// Side Includes. To display in the
+// title bar, exclude the
+//"<title></title>" code from the page.
+
+// This part gets the IP
+var ip = '<!--#echo var="REMOTE_ADDR"-->';
+
+// This part is for an alert box
+alert("Your IP address is "+ip);
+
+// This part is for the status bar
+window.defaultStatus = "Your IP address is "+ip;
+
+// This part is for the title bar
+document.write("<title>Your IP address is "+ip+"</title>");
+//  End -->
+</script>
+		<title>The Library of Babel Book Page - Lucas Battich</title>
+
+
+		<style type="text/css">
+			body{
+				margin:20px;
+				font-size: 11px;
+				font-family:"arial";
+				background-color: black;
+			}
+			h1{font-size: 2em;}
+			#heading{
+				color:white;
+				width:400px;
+				margin-right: auto;
+				margin-left: auto;
+				text-align: center;
+			}
+			#menu{
+				position:absolute;
+				top:100px;
+				width:150px;
+				height:150px;
+			}
+			table {
+				position:absolute;
+				width:60%;
+				height:80%;
+				top:10%;
+				left:20%;
+				transition: all 0.4s;
+				-webkit-transition: all 0.4s;
+			}
+			td {
+				height: 100%;
+				width: 100%;
+				padding: 5%;
+				text-align: center;
+				vertical-align: middle;
+			}
+			textarea{
+				font-size: 0.9em;
+				font-family:Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", serif;
+				text-align:justify;
+			}
+
+		</style>
+	</head>
+	<body>
+		
+<p><center>
+<font face="arial, helvetica" size"-2">Free JavaScripts provided<br>
+by <a href="http://javascriptsource.com">The JavaScript Source</a></font>
+</center><p>
+		<div id="heading">
+			<h1>Library of Babel Volume Generator</h1>
+			<p>by Lucas Battich</p>
+			<p>online pdf encription via <a href="http://parall.ax/products/jspdf" target="_blank">jspdf</a></p>
+		</div>
+
+		<div id="menu">
+			<button onclick="generate()">Generate Page</button>
+			<button onclick="savepdf()">Generate PDF Volume</button>
+		</div>
+		<table><td>
+			<p id="ip"></p>
+			<textarea id="output" rows="80" cols="100"></textarea>
+	   </table>
+
+
+		
+		<script language="javascript" type="text/javascript">
+			
+			window.onload=generate();
+
+			function getip(data){
+				alert("lol");
+				// console.log(data);
+				// document.getElementById("output").innerHTML = "You IP address is: " + data.ip;
+		  //     alert(data.ip); // alerts the ip address
+		    }
+
+			function generate() {
+				var x=document.getElementById("output")
+				var page = "";
+				for( var i=0; i < 40; i++ )
+				page += makeline() + "\n" + "\n";
+				// document.getElementById("output").innerHTML = "You IP address is: " + myip;
+				x.innerHTML = page;
+				return page;
+			}
+
+			function makeline() {
+				var line = "";
+				//var string = "AAABBBCCCDDDEEEFFFGGGHHHIIIJJJKKKLLLMMMNNNOOOPPPQQQRRRSSSTTTVVVZZZ   ...,,,";
+				var string = "ABCDEFGHIJKLMNOPQRSTVZ .,";
+				for( var i=0; i < 80; i++ ) {
+					line += string.charAt(Math.floor(Math.random() * string.length));
+				}
+				return line;
+			}
+			
+			function savepdf() {
+				var vol = Math.floor(Math.pow(10,16)*Math.random());
+				var doc = new jsPDF();
+				doc.setProperties({
+					title: 'Library of Babel Volume #' + vol,
+					subject: 'Library of Babel Volume',		
+					author: 'Lucas Battich & user with IP ' + '00.00.00.00',
+					keywords: 'generated, library, babel',
+					creator: 'Unknown'
+				});
+				doc.setFont("times");
+				doc.setFontSize(14);
+				doc.text(50, 100, "Library of Babel Volume No. " + vol);
+				doc.setTextColor(100);
+				doc.text(80, 250, "Generated on " + day())
+				doc.setTextColor(0);
+				doc.setFontSize(9);
+				for( var i=0; i < 410; i++ ) {
+					doc.addPage();
+					doc.text(25, 25, generate());
+				}
+				
+				doc.save('Library of Babel Volume #' + vol + '.pdf')
+			}
+
+			function day() {
+				var today = new Date();
+				var dd = today.getDate();
+				var mm = today.getMonth()+1; //January is 0!
+				var yyyy = today.getFullYear();
+				if(dd<10) {dd='0'+dd;} 
+				if(mm<10) {mm='0'+mm;} 
+				today = mm+'/'+dd+'/'+yyyy;
+				return today;
+			}
+		</script>
+		<script src="http://smart-ip.net/info-json?callback=getip"></script>	
+		   
+    </script>
+
+	</body>
+</html>
+
+
+
+
+

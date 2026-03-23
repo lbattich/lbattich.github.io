@@ -15,4 +15,4 @@ Algorithm-based work
 
 2014
 
-<p style="text-align: center;"><a class="btn btn-outline-primary" href="http://lucasbattich.com/colourfield.html" target="_blank">Access Site Online</a></p>
+<p style="text-align: center;"><a class="btn btn-outline-primary" href="{{ '/assets/sites/colourfield/' | relative_url }}" target="_blank">Access Site Online</a></p>

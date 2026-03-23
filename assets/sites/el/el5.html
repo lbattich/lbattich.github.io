@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!--
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+                                  
+ _           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+ 
+-->
+<html>
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="content-type">
+	    <meta name="author" content="Lucas Battich">
+	    <link rel="stylesheet" href="style.css">
+		<script type="text/javascript" src="paper-full.js"></script>
+		<script type="text/paperscript" canvas="canvas">
+
+			var op = 1;
+			var up = false;
+
+			// background layer
+			var back = new Path.Rectangle({
+                size: [view.size.width, view.size.height],
+                fillColor: "lightgrey"
+            });
+            back.position = view.center;
+
+			
+
+            var littleC = new Layer();
+            // The amount of circles we want to make:
+			var countA = 10;
+
+
+
+			for (var i = 0; i < countA; i++) {
+				var center = Point.random() * view.size;
+				var circle = new Path.Circle(center, 30);
+				circle.fillColor = 'red';
+				circle.scale(i / countA);
+			}
+
+
+			for (var i = 0; i < project.activeLayer.children.length; i++) {
+				var child = project.activeLayer.children[i];
+
+				// Change the fill color of the child to a random
+				// value between 0 and 360:
+				child.fillColor.hue = Math.random() * 360;
+				// child.blendMode = 'difference';
+
+			}
+
+			// project.activeLayer.blendMode = 'difference';
+
+
+
+
+			var bigC = new Layer();
+			var countB = 10;
+
+			for (var i = 0; i < countB; i++) {
+				drawHexagon();
+			}
+
+
+
+
+			// project.activeLayer.blendMode = 'multiply';
+
+
+						//white block
+			// var invert = new Layer();
+			// var back = new Path.Rectangle({
+   //              size: [view.size.width, view.size.height],
+   //              fillColor: "white"
+   //          });
+   //          back.position = view.center;
+
+   //          project.activeLayer.blendMode = 'difference';
+
+            function drawHexagon() {
+            	var centerH = Point.random() * view.size;	// use this for random placement
+            	// var centerH = view.center + ((Math.random() * 30) - 15);	// use for centred placement
+				var hexagon = new Path.RegularPolygon({
+				    center: centerH,
+				    sides: 6,
+				    radius: view.size.height / 4,
+				    fillColor: 'black'
+				});
+
+				var triangle = new Path();
+				triangle.add(hexagon.segments[0].point);
+				triangle.add(hexagon.segments[1].point);
+				triangle.add(centerH);
+				triangle.add(hexagon.segments[5].point);
+				triangle.closed = true;
+				triangle.fillColor = 'white';
+
+				var copy = triangle.clone();
+				copy.opacity = 0.5;
+				copy.rotate(-120, centerH);
+
+				// console.log(Math.random() * (view.size.height / 4));
+
+				var groupH = new Group(hexagon, triangle, copy);
+				groupH.rotate(Math.random() * 360, centerH);
+				groupH.scale(Math.random(), centerH);
+
+
+			}
+
+			function drawGrid() {
+
+
+				var centerG = Point.random() * view.size;	// use this for random placement
+				// var centerG = view.center;	// use for centred placement
+				var cells = 20;
+				var cellWidth = view.size.height / 40;
+
+				var grid = new Path.Rectangle(centerG, new Size(cellWidth * cells, cellWidth * cells));
+
+				var pLine = new Path.Line(topPoint, bottomPoint);
+
+				var groupG = new Group(grid, pLine);
+
+				for (var i = 0; i <= cells; i++) {
+			        var xPos = grid.bounds.left + (i * cellWidth);
+			        var topPoint = new Point(xPos, grid.bounds.top);
+			        var bottomPoint = new Point(xPos, grid.bounds.bottom - (i * cellWidth));
+			        var vLine = new Path.Line(topPoint, bottomPoint);
+			        groupG.addChild(vLine);
+
+			        var yPos = grid.bounds.top + i * cellWidth;
+			        var leftPoint = new Point(grid.bounds.left, yPos);
+			        var rightPoint = new Point(grid.bounds.right - (i * cellWidth), yPos);
+			        var hLine = new Path.Line(leftPoint, rightPoint);
+			        groupG.addChild(hLine);
+			    }
+
+			    grid.removeSegment(3);
+			    groupG.strokeColor = 'red';
+				groupG.skew(-30, -30);
+				groupG.rotate(225, centerG);
+				groupG.scale(Math.random()+0.1, centerG);
+
+			
+			}
+
+			// The onFrame function is called up to 60 times a second:
+			function onFrame(event) {
+				// Run through the active layer's children list and change
+				// the position of the placed symbols:
+
+				littleC.activate();
+
+				for (var i = 0; i < countA; i++) {
+					var item = project.activeLayer.children[i];
+
+					// Move the item 1/20th of its width to the right. This way
+					// larger circles move faster than smaller circles:
+					item.position.x += item.bounds.width / 15;
+
+					// If the item has left the view on the right, move it back
+					// to the left:
+					if (item.bounds.left > view.size.width) {
+						item.position.x = -item.bounds.width;
+					}
+				}
+
+				bigC.activate();
+
+				for (var i = 0; i < countB; i++) {
+					var item = project.activeLayer.children[i];
+
+					// Move the item 1/20th of its width to the right. This way
+					// larger circles move faster than smaller circles:
+					item.position.x -= item.bounds.width / 20;
+
+					// If the item has left the view on the right, move it back
+					// to the left:
+					if (item.bounds.right < 0) {
+						item.position.x = view.size.width+item.bounds.width;
+					}
+				}
+				// project.layers[0].fillColor.hue += 1;
+
+				// invert.activate();
+
+				
+
+				// op = up == false ? op - 0.01 : op + 0.01;
+				// if (op < 0) {
+				// 	op = 0;
+				// 	up = true;
+				// }
+				// if (op > 1) {
+				// 	op = 1;
+				// 	up = false;
+				// }
+				// project.activeLayer.opacity = op;
+				
+
+			}
+
+			view.onResize = function(event) {
+			    project.layers[0].position = view.center;
+			    project.layers[0].bounds = view.size;
+			}
+		</script>
+		<script type="text/javascript">
+			// var x = document.getElementById("myCanvas");
+
+			// function grey() {
+   //      var a = Math.floor(256*Math.random());
+   //      var colour = "rgba("+a+","+a+","+a+","+Math.random()+")";
+   //      return colour;
+   //      }
+
+   //      //choose a random colour
+
+   //    function colourme() {
+   //      var r = Math.floor(256*Math.random());
+   //      var g = Math.floor(256*Math.random());
+   //      var b = Math.floor(256*Math.random());
+   //      var colour = "rgba("+r+","+g+","+b+",";
+   //      return colour;
+   //      }
+
+			// function save() { 
+   //      var d = x.toDataURL("image/jpeg");
+   //      var w = window.open();
+   //      var link = w.document.createElement('a');
+   //      link.href = d
+   //      link.download="proun.jpg";
+   //      if (document.createEvent) {
+   //        var e = document.createEvent('MouseEvents');
+   //        e.initEvent('click' ,true ,true);
+   //        link.dispatchEvent(e);
+   //        return true;
+   //        }
+   //      }
+		</script>
+	</head>
+	<body>
+		<canvas id="canvas" resize></canvas>
+	</body>
+</html>

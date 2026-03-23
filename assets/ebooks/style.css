@@ -1,0 +1,37 @@
+@font-face {
+    font-family: FacileSans;
+    font-style: normal;
+    font-weight: 300;
+    src: url(FacileSans.otf);
+}
+body {background-color: silver}
+.wrap {
+	width:60%;
+	height:80%;
+	top:0px;
+	left:0px;
+	display:table-cell;
+	position: absolute;
+	padding: 2% 20%;
+	font-family: FacileSans, "Helvetica Neue", Arial, sans-serif;
+	vertical-align: top;
+	text-align: center;
+}
+.title {
+	font-size: 3em;
+	background-color: white;
+	color: black;
+	padding: 10px;
+	border-radius: 15px;
+
+}
+.white {color:white;
+}
+.bubble {
+	background-color: white;
+	padding: 5px 10px;
+	border-radius: 15px;
+	text-align: left;
+	font-family: "Helvetica Neue", Arial, sans-serif;
+
+}

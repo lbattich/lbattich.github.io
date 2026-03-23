@@ -23,4 +23,4 @@ This digital work is actually optimised to function as a desktop app (offline). 
 
 1925 _Battleship Potemkin_ digital film file courtesy of the <a href="https://archive.org/" target="_blank">Internet Archive</a>.
 
-<p style="text-align: center;"><a class="btn btn-outline-primary" href="http://lucasbattich.com/potemkin/potemkin.html" target="_blank">Access Online Version</a></p>
+<p style="text-align: center;"><a class="btn btn-outline-primary" href="{{ '/assets/sites/potemkin/' | relative_url }}" target="_blank">Access Online Version</a></p>

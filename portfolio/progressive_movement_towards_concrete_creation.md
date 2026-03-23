@@ -12,13 +12,17 @@ images:
 
 _Progressive Movement Towards Concrete Creation_ presents a series of computer-generated visual works operating in real time. The imagery is derived from El Lissittky’s avant-garde abstract works, and visualizes the stock market performance of several companies in the Internet sector.
 
-<a class="btn btn-outline-primary" href="http://lucasbattich.com/progressive/" target="_blank">Visit work online</a>
+<a class="btn btn-outline-primary" href="{{ '/assets/sites/progressive/' | relative_url }}" target="_blank">Visit work online</a>
 
 _**Update**: This artwork is currently not working. It uses a Google finance API service to get the live market readings necessary for the website. The service was shut off on September 2017._
 
 Individual company visulizations:
 
-<a class="btn btn-outline-primary" href="http://lucasbattich.com/progressive/GOOGL.html" target="_blank">Alphabet Inc. (Google)</a> <a class="btn btn-outline-primary" href="http://lucasbattich.com/progressive/YHOO.html" target="_blank">Yahoo! Inc.</a> <a class="btn btn-outline-primary" href="http://lucasbattich.com/progressive/FB.html" target="_blank">Facebook Inc.</a> <a class="btn btn-outline-primary" href="http://lucasbattich.com/progressive/TWTR.html" target="_blank">Twitter Inc.</a> <a class="btn btn-outline-primary" href="http://lucasbattich.com/progressive/LNKD.html" target="_blank">LinkedIn Corp.</a>
+<a class="btn btn-outline-primary" href="{{ '/assets/sites/progressive/GOOGL.html' | relative_url }}" target="_blank">Alphabet Inc. (Google)</a> <a class="btn btn-outline-primary" href="{{ '/assets/sites/progressive/YHOO.html' | relative_url }}" target="_blank">Yahoo! Inc.</a> <a class="btn btn-outline-primary" href="{{ '/assets/sites/progressive/FB.html' | relative_url }}" target="_blank">Facebook Inc.</a> <a class="btn btn-outline-primary" href="{{ '/assets/sites/progressive/TWTR.html' | relative_url }}" target="_blank">Twitter Inc.</a> <a class="btn btn-outline-primary" href="{{ '/assets/sites/progressive/LNKD.html' | relative_url }}" target="_blank">LinkedIn Corp.</a>
+
+
+href="{{ '/assets/sites/babel/' | relative_url }}"
+
 
 The imagery in each work is composed of the arrangement of five distinct elementary shapes, some of them included twice:
 * 2 x Group of rectangles

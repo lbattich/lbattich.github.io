@@ -15,4 +15,4 @@ _Colour Tones_ is an online generative film work and sound composition, where a 
 
 Algorithm-based work, 2014.
 
-<p style="text-align: center;"><a class="btn btn-outline-primary" href="http://lucasbattich.com/colourtones.html" target="_blank">Access Site Online</a></p>
+<p style="text-align: center;"><a class="btn btn-outline-primary" hhref="{{ '/assets/sites/colourtones/' | relative_url }}" target="_blank">Access Site Online</a></p>

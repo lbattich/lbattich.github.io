@@ -1,0 +1,74 @@
+@font-face {
+    font-family: SourceSansPro;
+    font-style: normal;
+    font-weight: 300;
+    src: url(SourceSansPro-Light.otf);
+}
+@font-face {
+    font-family: baskerville;
+    font-style: normal;
+    font-weight: 300;
+    src: url(baskerville-regular.otf);
+}
+body {background-color: silver}
+.wrap {
+	width:60%;
+	height:80%;
+	top:0px;
+	left:0px;
+	display:table-cell;
+	position: absolute;
+	padding: 2% 20%;
+	font-family: SourceSansPro, "Helvetica Neue", Arial, sans-serif;
+	vertical-align: top;
+	text-align: center;
+}
+button {
+	color: black;
+	font-size: 2em;
+	font-family:Baskerville, "Palatino Linotype", Palatino, "Times New Roman", serif;
+	background-color: #D0DAE0;
+	/*width: 40%;
+	height: 15%;*/
+	padding: 0.8em;
+	border-width: 1vw;
+	border-style: solid;
+	border-color: #E4EEF4 #B2BCC2 #B2BCC2 #E4EEF4;
+	border-radius: 25px;
+	cursor: pointer;
+}  
+.title {
+	font-size: 3em;
+	background-color: white;
+	color: black;
+	padding: 10px;
+	border-radius: 15px;}
+.white {color:white;}
+.bubble {
+	background-color: white;
+	padding: 5px 10px;
+	border-radius: 15px;
+	text-align: left;
+	}
+.q {padding: 0% 5%;
+	font-size: 1.2em;
+	font-family:Baskerville, "Palatino Linotype", Palatino, "Times New Roman", serif;
+}
+.little {
+	font-size:0.8em;
+	text-align: left;
+}
+.container {
+	display: flex;
+	justify-content: space-between;
+	display: webkit-flex;
+	-webkit-justify-content: space-between;
+}
+.flex{
+	display: inline;
+	width: 48%;
+}
+.flexgap{
+	display: inline;
+	min-width: 15px;
+}

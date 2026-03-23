@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!--
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+                                  
+ _           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+
+
+CRICLE SCANNER
+by LUCAS BATTICH, 2014
+  
+-->
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Circle Scanner - by lucas battich</title>
+  </head>
+  <body>
+  	
+    <button onclick="start()">scan</button>
+    <button onclick="circle()">draw a circle</button>
+    <button onclick="white()">clear up</button>
+    <button onclick="silence()">stop</button>
+    <br>
+    <br>
+    <svg id="line" height="300" style="position: absolute">
+  		<line id= "bar" x1="0" y1="0" x2="0" y2="300" style="stroke:rgba(255,0,0,0.7);stroke-width:1" />
+	</svg> 
+    <canvas id="myCanvas" height="300"></canvas>
+    
+    <script>
+    
+    var context = new AudioContext();
+    var osc1 = context.createOscillator();
+    var osc2 = context.createOscillator();
+    var osc3 = context.createOscillator();
+    var osc4 = context.createOscillator();
+    var osc5 = context.createOscillator();
+    var gain1 = context.createGain(); // Create gain node 1
+    var gain2 = context.createGain();
+    var gain3 = context.createGain();
+    var gain4 = context.createGain();
+    var gain5 = context.createGain();
+    
+    var tid;
+    var x = 0;
+    
+     // Connect oscillators to gains, and gain to context destination (speakers)
+	osc1.connect(gain1);
+	osc2.connect(gain2);
+	osc3.connect(gain3);
+	osc4.connect(gain4);
+	osc5.connect(gain5);
+	gain1.connect(context.destination);
+	gain2.connect(context.destination);
+	gain3.connect(context.destination);
+	gain4.connect(context.destination);
+	gain5.connect(context.destination);
+	
+    osc1.frequency.value = 500;
+    osc2.frequency.value = 400;
+    osc3.frequency.value = 300;
+    osc4.frequency.value = 200;
+    osc5.frequency.value = 100;
+	gain1.gain.value = 0;
+	gain2.gain.value = 0;
+	gain3.gain.value = 0;
+	gain4.gain.value = 0;
+	gain5.gain.value = 0;
+	osc1.start(0);
+	osc2.start(0);
+	osc3.start(0);
+	osc4.start(0);
+	osc5.start(0);
+	
+	var blackloud = true;
+	var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth-30;
+    document.getElementById("line").setAttribute("width", canvas.width);
+    white();
+    circle();
+      
+    function start(){
+    if (tid){
+    	clearTimeout(tid);
+    	}
+    	x = 0;
+    	change();
+    }
+    
+	function scan() {
+	
+		var data = ctx.getImageData(x,0,1,1).data;   // (x, y, width, height)
+		var pixel = data[0] + data[1] + data[2];
+		var scale = pixel / (255*3);  //scale from 0=black=quiet and 1=white=loud
+		gain1.gain.value = blackloud ? 1-scale : scale;
+		
+		var data = ctx.getImageData(x,75,1,1).data;   // (x, y, width, height)
+		var pixel = data[0] + data[1] + data[2];
+		var scale = pixel / (255*3);  //0=black and 1=white
+		gain2.gain.value = blackloud ? 1-scale : scale;
+		
+		var data = ctx.getImageData(x,150,1,1).data;   // (x, y, width, height)
+		var pixel = data[0] + data[1] + data[2];
+		var scale = pixel / (255*3);  //0=black and 1=white
+		gain3.gain.value = blackloud ? 1-scale : scale;
+		
+		var data = ctx.getImageData(x,225,1,1).data;   // (x, y, width, height)
+		var pixel = data[0] + data[1] + data[2];
+		var scale = pixel / (255*3);  //0=black and 1=white
+		gain4.gain.value = blackloud ? 1-scale : scale;
+		
+		var data = ctx.getImageData(x,299,1,1).data;   // (x, y, width, height)
+		var pixel = data[0] + data[1] + data[2];
+		var scale = pixel / (255*3);  //0=black and 1=white
+		gain5.gain.value = blackloud ? 1-scale : scale;
+		
+        var bar = document.getElementById("bar");
+        bar.setAttribute("x1", x);
+        bar.setAttribute("x2", x);
+
+	}
+	
+	function white() {
+		ctx.fillStyle="white"; //first colour
+		ctx.fillRect(0,0,canvas.width,canvas.height);
+		ctx.fill();
+	}
+	
+	function change() {
+		x = x+1;
+		scan();
+		if (x < (canvas.width-1)) {
+			tid = setTimeout(change,7);
+		}
+		else {
+			x=0;
+			tid = setTimeout(change,7);
+		}
+	}
+	
+  	function silence() {
+  		gain1.gain.value = 0;
+  		gain2.gain.value = 0;
+  		gain3.gain.value = 0;
+  		gain4.gain.value = 0;
+  		gain5.gain.value = 0;
+  		clearTimeout(tid);
+  	}
+  	function circle()
+	{
+var xc,yc,radio;
+yc=Math.floor((canvas.height+1)*Math.random());
+xc=Math.floor((canvas.width+1)*Math.random());
+radio=Math.floor((200)*Math.random());
+ctx.beginPath();
+ctx.arc(xc,yc,radio,0,2*Math.PI);
+var grd=ctx.createLinearGradient(xc-radio,yc-radio,xc+radio,yc+radio);
+grd.addColorStop(0,colourme());
+grd.addColorStop(1,colourme());
+ctx.strokeStyle=grd;
+ctx.lineWidth=Math.floor((100)*Math.random());
+ctx.stroke();
+}
+
+function colourme()
+{
+var a = Math.floor(256*Math.random());
+var b = Math.floor(256*Math.random());
+var c = Math.floor(256*Math.random());
+var colour = "rgb("+a+","+b+","+c+")";
+return colour;
+}
+    </script>
+  </body>
+</html>

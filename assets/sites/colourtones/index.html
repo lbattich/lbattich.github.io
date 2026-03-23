@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+                                  
+ _           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+  
+
+COLOUR TONES
+by LUCAS BATTICH, 2014
+
+-->
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <meta name="author" content="Lucas Battich">
+    <meta name="description" content="Colour Tones, By Lucas Battich, 2014">
+    <title>Colour Tones - Lucas Battich, 2014</title>
+    <style>
+      body {
+        transition: background 0.35s;
+        -webkit-transition: background 0.35s;
+      }
+    </style>
+  </head>
+  <body>
+  	
+    <script>
+    
+    var context = new AudioContext();
+    var tone = context.createOscillator();
+    var gainNode1 = context.createGain(); // Create gain node 1
+    var on=0;
+    var r,g,b,h,light;
+    
+    tone.connect(gainNode1); // Connect sound source tone to gain node 1
+    gainNode1.connect(context.destination);
+    gainNode1.gain.value = 0;
+    tone.type = 0; // sine wave
+    tone.frequency.value = 0;
+    tone.start(0);
+    play();
+	
+		function play(){
+			if (on==0){
+				on=1;
+				change();
+			}
+		}
+
+	function change() {
+		if (on==1){
+		// map frequency between 80hz and 880hz based on colour freq (450thz to 750thz)
+			colourize();
+            convert();
+            var freq = 80+((h/360)*800);
+            tone.frequency.value = freq;
+			
+		//  gain based to lightness of colour
+			var gain = light+0.05;
+			gainNode1.gain.value = gain;
+			
+		// random duration of note -  1/50sec to 1sec
+			var time = 20 + Math.floor(981*Math.random());
+			setTimeout(function(){change()},time);
+        }
+	}
+	
+  	function silence() {
+  		tone.frequency.value = 0;
+  		gainNode1.gain.value = 0;
+  		on=0;
+  	}
+    
+    function colourize() {
+        r = Math.floor(256*Math.random());
+        g = Math.floor(256*Math.random());
+        b = Math.floor(256*Math.random());
+        document.body.style.background="rgb("+r+","+g+","+b+")";
+        }
+    
+    function convert() {
+        r = r/255;
+    	g = g/255;
+    	b = b/255;
+        var min = Math.min(r, g, b);
+        var max = Math.max(r, g, b);
+        var delta = max - min;
+        
+        if (r == max)
+            {h = (g - b) / delta;}		// between yellow & magenta
+        else if (g == max)
+            {h = 2 + (b - r) / delta;}	// between cyan & yellow
+        else if (b == max)
+            {h = 4 + (r - g) / delta;}	// between magenta & cyan
+        else if (delta == 0) {h=0;}		// pure grey, black or white
+        
+        h *= 60;    // to degrees
+        if( h < 0 ) {h += 360;}
+        thz = 450+((h/360)*300);    // convert hue to colour wave frequency in TeraHz (450thz to 750thz)
+        light = (max + min) / 2;	// lightness
+
+    }
+  
+    </script>
+  
+</body>
+</html>

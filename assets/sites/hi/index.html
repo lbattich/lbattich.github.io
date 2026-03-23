@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<!--
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+                                  
+ _           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+  
+
+-->
+
+<html>
+  <head>
+
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta name="author" content="Lucas Battich">
+    <meta name="description" content="Lucas Battich">
+	<script src="typed.js"></script>
+    <title>hi</title>
+    <style type="text/css">
+      body {
+        -webkit-transition: background-color 1000ms linear;
+        -moz-transition: background-color 1000ms linear;
+        -o-transition: background-color 1000ms linear;
+        -ms-transition: background-color 1000ms linear;
+        transition: background-color 1000ms linear;
+        background-color: #000;
+      }
+      @font-face {
+        font-family: FacileSans;
+        font-style: normal;
+        src: url(FacileSans.otf);
+        }
+       @font-face {
+        font-family: PaytoneOne;
+        font-style: normal;
+        src: url(PaytoneOne-Regular.ttf);
+       } 
+      #box{
+        position: absolute;
+        display: table;
+        width: 80vw;
+        height: 60vh;
+        top: 25%;
+        left: 10%;
+        text-align: center;
+        font-family: FacileSans, Helvetica, sans-serif;
+        color: white;
+        }
+      #typed {
+        font-family: FacileSans, Helvetica, sans-serif;
+        font-size: 6vw;
+      }
+      #happy {
+        font-family: PaytoneOne, Helvetica, sans-serif;
+        font-size: 12vw; 
+        text-shadow: 
+        0 -1px 0 #fff, 
+        0 1px 0 #2e2e2e, 
+        0 2px 0 #2c2c2c, 
+        0 3px 0 #2a2a2a, 
+        0 4px 0 #282828, 
+        0 5px 0 #262626, 
+        0 6px 0 #242424, 
+        0 7px 0 #222, 
+        0 8px 0 #202020, 
+        0 9px 0 #1e1e1e, 
+        0 10px 0 #1c1c1c, 
+        0 11px 0 #1a1a1a, 
+        0 12px 0 #181818, 
+        0 13px 0 #161616, 
+        0 14px 0 #141414, 
+        0 15px 0 #121212, 
+        0 22px 30px rgba(0, 0, 0, 0.9);
+      }
+      .emoticon{
+        z-index: -10;
+        font-size: 4em;
+
+
+          -webkit-animation: fadein 0.8s; /* Safari, Chrome and Opera */
+             -moz-animation: fadein 0.8s; /* Firefox */
+              -ms-animation: fadein 0.8s; /* Internet Explorer */
+               -o-animation: fadein 0.8s; /* Opera */
+                  animation: fadein 0.8s;
+      }
+
+      @keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+      /* Firefox < 16 */
+      @-moz-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+      /* Safari, Chrome and Opera > 12.1 */
+      @-webkit-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+      /* Internet Explorer */
+      @-ms-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+      /* Opera < 12.1 */
+      @-o-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div id="box">
+		<span id="typed"></span>
+		<span id="happy"></span>
+    </div>
+    <audio id="song">
+      <source src="Francoise Hardy - Le Temps De L'Amour.mp3" type="audio/mpeg">
+    </audio> 
+    <script language="JavaScript">
+
+      var txt = ["HAPPY","HAPPY","HAPPY","HAPPY","BIRTHDAY","BIRTHDAY","BIRTHDAY","BIRTHDAY","ALICE","ALICE","ALICE","ALICE"];
+      var counter = 0;
+      //setTimeout(red,300);
+      change();
+
+      function red(){
+        document.getElementById("happy").innerHTML = txt[counter];
+        counter++;
+        if (counter == txt.length) {counter =0 ;}
+        setTimeout(blank,150);
+      }
+
+      function blank(){
+        document.getElementById("happy").innerHTML = " ";
+        setTimeout(red,150);
+      }
+
+      function change() {
+        r = Math.floor(150*Math.random());
+        g = Math.floor(150*Math.random());
+        b = Math.floor(150*Math.random());
+        document.body.style.backgroundColor = "rgb("+r+","+g+","+b+")";
+        setTimeout(change,2000);
+      }
+	  
+    	var typed = new Typed("#typed", {
+    		strings: ["Dear Alice,",
+"I must apologize for being such a silent friend.",
+"not getting in touch",
+"not saying hi",
+"and such...",
+"so yeah I apologize for being such a", "silent", "absent friend",
+"There is a song I like where the author is writing a letter,", "and the letter is kinda like this:",
+"The children are just out of school",
+"and here in Nijmegen the sky is turning grey",
+"and I remember to water the plants,",
+"and care for the flowers,", "like Alice said",
+"and here in Nijmegen it is starting to rain",
+"and I think, how is Alice doing?",
+"I hope you are doing great",
+"I hope all your projects are going great",
+"I hope the gods shine upon you",
+"I hope you are having such a pinky fluffy fantastic time",
+"I hope you get to eat all the peanut-butter you want",
+    "and^200.^200.^200."," "],
+    		typeSpeed: 45,
+    		backSpeed: 10,
+    		showCursor: false,
+    		smartBackspace: true,
+    		fadeOut: true,
+    		//fadeOutDelay: 450,
+    		onComplete: (self) => {red(); document.getElementById("song").play(); emoticon();},
+    	});
+
+      function emoticon() {
+
+        var fullWidth = window.innerWidth;
+        var fullHeight = window.innerHeight;
+
+        var text = ["😁", "😂", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "😌", "😍", "😏", "😘", "😚", "😝", "💖", "💗", "💘", "💚", "💜"];
+
+        var elem = document.createElement("div");
+        var rdm = Math.round(Math.random() * 20);
+        elem.textContent = text[rdm];
+        elem.style.position = "absolute";
+        elem.className = "emoticon"; 
+        elem.style.left = Math.round(Math.random() * (fullWidth-100)) + "px";
+        elem.style.top = Math.round(Math.random() * (fullHeight-100)) + "px";
+        document.body.appendChild(elem);
+        setTimeout(emoticon,1000);
+      }
+
+    </script>
+  </body>
+</html>

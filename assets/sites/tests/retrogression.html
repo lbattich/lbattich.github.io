@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="author" content="Lucas Battich">
+    <meta name="description" content="Retrogression of sentences from a text">
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <style>
+    body
+      {
+        background-color:#FFF;
+      }
+      
+    </style>
+    <title>Retrogression of sentences from a text</title>
+  </head>
+  <body>
+  <p></p>
+  <p>Retrogression of sentences from a text</p>
+    <textarea id="input" rows="20" cols="100">input</textarea>
+  <p></p>
+    <button id="but" onclick="convert()">retrograde</button>
+    <button id="but" onclick="randomize()">randomize</button>
+    <p id="d1"></p>
+     <textarea id="output" rows="20" cols="100">output</textarea>
+    <p id="d2"></p>
+    <p id="d3"></p>
+
+    
+    <script language="javascript">
+    
+    var rawinput = document.getElementById("input");
+    
+    function convert()
+    {
+     //var raw0 = rawinput.value.replace(/hello/gi,"lol");
+     var raw1 = rawinput.value.split(".");
+     raw1.pop(); // remove last item of array: it is empty!
+     raw1[0] = " " + raw1[0]; //add a space before first sentence
+     raw1.reverse();
+	 print(raw1);
+    }
+     
+    function randomize()
+    {
+	 var raw1 = rawinput.value.split(".");
+     raw1.pop(); // remove last item of array: it is empty!
+     raw1[0] = " " + raw1[0]; //add a space before first sentence
+     shuffle(raw1);
+	 print(raw1);
+	}
+
+	
+	function print(row){
+		var retro = row[0] + ".";
+     	for (var i=1; i<(row.length); i++)
+	 	{
+	 	retro = retro + row[i] + ".";
+	 	}
+     	document.getElementById("output").value = retro;
+	}
+	
+	function shuffle(row){
+    	for (var i = row.length-1; i >=0; i--) {  
+        	var index = Math.floor(Math.random()*(i+1)); 
+        	var tempvalue = row[index]; 
+        	row[index] = row[i]; 
+        	row[i] = tempvalue;
+    	}
+    	return row;
+	}
+      
+</script>
+  </body>
+</html>

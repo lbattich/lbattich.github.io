@@ -1,0 +1,2 @@
+[25-May-2022 17:10:49 UTC] PHP Warning:  readdir() expects parameter 1 to be resource, string given in /home/lucasbat/public_html/ebooks/index.php on line 19
+[25-May-2022 17:10:50 UTC] PHP Warning:  readdir() expects parameter 1 to be resource, string given in /home/lucasbat/public_html/ebooks/index.php on line 19

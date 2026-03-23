@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!--
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+                                  
+ _           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+ 
+-->
+<html>
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="content-type">
+	    <meta name="author" content="Lucas Battich">
+	    <link rel="stylesheet" href="style.css">
+		<script type="text/javascript" src="paper-full.js"></script>
+		<script type="text/paperscript" canvas="canvas">
+
+			// background colour
+			var move = false;
+			var back = new Path.Rectangle({
+                size: [view.size.width, view.size.height],
+                fillColor: "Gainsboro"
+            });
+            back.position = view.center;
+
+            // drawHexagon();
+	        // drawCircle();
+
+	        // drawGrid();
+
+            function drawCluster() {
+            	var count = 2 + Math.floor(4 * Math.random());
+            	var angle = 360 * Math.random();
+            	// var centerRect = Point.random() * view.size; // use this for random placement
+            	var centerRect = view.center + Point.random() / (view.size*10);	// use for centred placement
+
+            	for (var i = 0; i < count; i++) {
+		            var rectSize = Size.random() * new Size(view.size.width/4, view.size.height);
+		            var rect = new Path.Rectangle(centerRect, rectSize);
+		            rect.fillColor =  grey();
+		            rect.shadowColor = grey();
+				    rect.shadowBlur = 1;
+				    rect.shadowOffset = new Point(5, 5);
+		            // rect.fillColor =  "black";
+		            // rect.opacity =  Math.random();
+		            rect.rotate(angle);
+		        }
+            }
+
+            function drawClusterT() {
+            	var count = 2 + Math.floor(4 * Math.random());
+            	var angle = 360 * Math.random();
+            	// var centerRect = Point.random() * view.size;	// use this for random placement
+            	var centerRect = view.center;	// use for centred placement
+
+            	for (var i = 0; i < count; i++) {
+		            var rectSize = Size.random() * new Size(view.size.width/4, view.size.height);
+		            var rect = new Path.Rectangle(centerRect, rectSize);
+		            // rect.fillColor =  grey();
+		            rect.fillColor =  "black";
+		            rect.opacity =  Math.random();
+		            rect.rotate(angle);
+		        }
+            }
+
+            function drawCircle() {
+	            // var centerC = Point.random() * view.size;	// use this for random placement
+	            var centerC = view.center + ((Point.random() * 30) - (Point.random() * 15));	// use for centred placement
+	            var radius = Math.random() * (view.size.height / 6);
+	            // var radius = view.size.height / 50;
+	            var circle = new Path.Circle(centerC, radius);
+	            circle.fillColor = 'red';
+	            circle.fillColor.hue = Math.random() * 360;
+	            circle.opacity = Math.random() / 2;
+			}
+			// circle.scale(Math.random() / 2);
+
+            function drawHexagon() {
+            	// var centerH = Point.random() * view.size;	// use this for random placement
+            	var centerH = view.center + ((Math.random() * 30) - 15);	// use for centred placement
+				var hexagon = new Path.RegularPolygon({
+				    center: centerH,
+				    sides: 6,
+				    radius: view.size.height / 4,
+				    fillColor: 'black'
+				});
+
+				var triangle = new Path();
+				triangle.add(hexagon.segments[0].point);
+				triangle.add(hexagon.segments[1].point);
+				triangle.add(centerH);
+				triangle.add(hexagon.segments[5].point);
+				triangle.closed = true;
+				triangle.fillColor = 'white';
+
+				var copy = triangle.clone();
+				copy.opacity = 0.5;
+				copy.rotate(-120, centerH);
+
+				// console.log(Math.random() * (view.size.height / 4));
+
+				var groupH = new Group(hexagon, triangle, copy);
+				groupH.rotate(Math.random() * 360, centerH);
+				groupH.scale(Math.random(), centerH);
+
+
+			}
+
+			 function drawGrid() {
+
+
+				// var centerG = Point.random() * view.size;	// use this for random placement
+				var centerG = view.center;	// use for centred placement
+				var cells = 20;
+				var cellWidth = view.size.height / 40;
+
+				var grid = new Path.Rectangle(centerG, new Size(cellWidth * cells, cellWidth * cells));
+
+				var pLine = new Path.Line(topPoint, bottomPoint);
+
+				var groupG = new Group(grid, pLine);
+
+				for (var i = 0; i <= cells; i++) {
+			        var xPos = grid.bounds.left + (i * cellWidth);
+			        var topPoint = new Point(xPos, grid.bounds.top);
+			        var bottomPoint = new Point(xPos, grid.bounds.bottom - (i * cellWidth));
+			        var vLine = new Path.Line(topPoint, bottomPoint);
+			        groupG.addChild(vLine);
+
+			        var yPos = grid.bounds.top + i * cellWidth;
+			        var leftPoint = new Point(grid.bounds.left, yPos);
+			        var rightPoint = new Point(grid.bounds.right - (i * cellWidth), yPos);
+			        var hLine = new Path.Line(leftPoint, rightPoint);
+			        groupG.addChild(hLine);
+			    }
+
+			    grid.removeSegment(3);
+			    groupG.strokeColor = 'red';
+				groupG.skew(-30, -30);
+				groupG.rotate(225, centerG);
+				groupG.scale(Math.random()+0.1, centerG);
+
+			
+			}
+
+
+				
+			
+
+			//Older circle script using symbols
+   //          var circle = new Path.Circle(view.center, view.size.height);
+   //          circle.fillColor = 'red';
+   //          circle.fillColor.hue = Math.random() * 360;
+			// var symbol = new Symbol(circle);
+
+			// var circleCenter = Point.random() * view.size;
+
+			// var placeCircle = symbol.place(circleCenter);
+			// placeCircle.scale(Math.random() / 2);
+
+			// placeCircle.opacity = Math.random() / 2;
+
+
+  
+    		function onMouseUp(event) {
+    // 			drawGrid();
+				// drawCluster();
+				// drawCluster();
+				// drawCircle();
+				// drawHexagon();
+				drawCircle();
+				move = true;
+				// kids = project.activeLayer.children;
+    // 				for (var i = 0; i < kids.length; i++) { 
+    // 					var distance = view.center - kids[i].position;
+    // 					console.log(distance.length/80000);
+    // 				}
+    			// var angle = 360 * Math.random();
+    			// project.activeLayer.lastChild.rotate(angle);
+    		}
+
+
+    		function onMouseDown(event) {
+    			move = false;
+    			project.activeLayer.removeChildren();
+    		}
+
+
+    		function onFrame(event) {
+    			var angle = 360 * Math.random();
+    			if (move) {
+    				kids = project.activeLayer.children;
+    				for (var i = 0; i < kids.length; i++) { 
+    					var distance = kids[i].position - view.center;
+    					// console.log(distance);
+    					kids[i].position += distance / 50;
+    					// if (distance.length < (view.size.height/1.5)){
+			    		// 	kids[i].scale(1+distance.length/9000);
+			    		// }
+			    		// else{
+			    		// 	kids[i].scale(1+distance.length/90000);
+			    		// }
+		    			// console.log( view.size.height - distance.length);
+		    		}
+	    		
+		    		var selector = Math.floor(Math.random()*100);
+		    		if (selector == 0){drawGrid();}
+		    		if (selector == 1){drawCircle();}
+		    		if (selector == 2){drawCluster();}
+		    		if (selector == 3){drawHexagon();}
+		    		if (selector >= 4){}
+		    	}
+    		}
+
+
+	        view.onResize = function(event) {
+			    project.activeLayer.position = view.center;
+			    project.activeLayer.bounds = view.size;
+			}
+
+			function grey() {
+		        var a = Math.floor(256*Math.random());
+		        var colour = "rgb("+a+","+a+","+a+")";
+		        return colour;
+	        }
+		</script>
+
+	</head>
+	<body>
+		<canvas id="canvas" resize></canvas>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<!--
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+                                  
+ _           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+  
+MONOCHROME POEMS 
+Lucas Battich
+2013
+
+
+-->
+
+<html>
+  <head>
+
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta name="author" content="Lucas Battich">
+    <meta name="description" content="Monochrome Poems by Lucas Battich, 2015">
+    <script src="list.js"></script>
+    <title>Monochrome Poems</title>
+    <style type="text/css">
+      body{background-color: black;
+          transition: all 0.5s;
+        }
+
+    </style>
+  </head>
+  <body>
+    <audio id="sound">
+       <source src="voice.ogg" />
+    </audio>
+
+    <script language="JavaScript">
+
+      var counter = 0;
+
+      //1ms:4.66hrs, 2ms:9.32hrs, 3ms:13.98hrs, 5ms:23.3hrs
+      document.getElementById("sound").onload = start();
+
+      function start(){
+        var counter = 0;
+        document.getElementById("sound").play();
+        setTimeout(change,1400);
+
+      }
+
+      function change(){
+        document.body.style.backgroundColor = colours[counter];
+
+        counter += 1;
+        if (counter == 50){start();}
+        else {setTimeout(change,2830);}
+      }
+
+
+    </script>
+  </body>
+</html>

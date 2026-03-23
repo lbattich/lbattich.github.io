@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <script src="jquery-1.11.1.min.js"></script>
+    <title>Audio test - 12-tone</title>
+    <style>
+      body {
+        background: black;
+        transition: background 0.4s;
+        -webkit-transition: background 0.4s;
+      }
+      canvas {
+        position:absolute;
+      }
+    </style>
+  </head>
+  <body>
+  	<br>
+  	<button onclick="makeRow()">make row</button>
+    <button onclick="play()">play</button>
+    <button onclick="silence()">stop</button>
+    <br>
+   
+    <p style="font-size:1.2em; color:red;"><span id="current"></span></p>
+    <canvas id="canvas"></canvas> 
+
+    <!-- 
+  	<p><textarea rows="10" cols="70" id="log" value="">Log</Textarea></p>
+  	 -->
+  
+  
+    <script>
+    
+      var context = new AudioContext();
+      var tone = context.createOscillator();
+      var gainNode1 = context.createGain(); // Create gain node 1
+      var on=0;
+      var tones = [0,1,2,3,4,5,6,7,8,9,10,11];
+      var freqvalues = [261.626,277.183,293.665,311.127,329.628,349.228,369.994,391.995,415.305,440,466.164,493.883];
+      var p = [];
+      var inv = [];
+      var r = [];
+      var ri = [];
+      var currentRow = [];
+      var currentTime = [];
+      var currentTimeName = [];
+      var note = 0;
+      var tempo = 500;
+      var durations = [4,2,1,0.5,0.25,0.125,0.0625]; //semibreve to 64th-note
+      var durationNames = ["Whole-note","Half-note","Quarter-note","Eighth-note","16th-note","32th-note","64  th-note"];
+      var dot = document.getElementById("dotspan");
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      var currentText = document.getElementById("current");
+      var str = "";
+      var red, g, b;
+      canvas.width = window.innerWidth-30;
+      canvas.height = window.innerHeight-200;
+    
+    
+      tone.type = 0; // sine wave
+      tone.frequency.value = 0;
+      tone.connect(gainNode1); // Connect sound source tone to gain node 1
+	    gainNode1.connect(context.destination);
+      gainNode1.gain.value = 0;
+      tone.start(0);
+		
+  //Create a new row:
+
+	function makeRow() {
+		p = shuffle(tones);
+		r = Array.prototype.slice.call(p);
+		r.reverse();
+		
+		inv[0] = p[0];
+		for (i = 1; i < 12; i++){
+			inv[i] = inv[i-1] - (p[i] - p[i-1]);
+			
+			if (inv[i] < 0) {inv[i]+= 12;}
+			else if (inv[i] > 11) {inv[i]-= 12;}
+			}
+		
+		ri = Array.prototype.slice.call(inv);
+		ri.reverse();
+		note = 0;
+		
+		// choose tempo between 60 and 240 (BPM) - save value in ms
+		tempo = 60000 / (60 + Math.floor(181*Math.random()));
+		
+		str="prime:,"+p+",";
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+		chooseRow();
+
+			
+	}
+	
+	
+	
+	function chooseRow() {
+		var numb=Math.floor(Math.random()*4);
+        if (numb==0){currentRow = Array.prototype.slice.call(p);currentText.innerHTML="Prime Row";} // prime
+        else if (numb==1){currentRow = Array.prototype.slice.call(r);currentText.innerHTML="Retrograde";} // retro
+        else if (numb==2){currentRow = Array.prototype.slice.call(inv);currentText.innerHTML="Inversion";} // inv
+        else if (numb==3){currentRow = Array.prototype.slice.call(ri);currentText.innerHTML="Retrograde Inversion";} // retro inv
+
+		for (i = 0; i < 12; i++){
+			var rdmTime = Math.floor(7*Math.random());
+			currentTime[i] = durations[rdmTime];
+			currentTimeName[i] = durationNames[rdmTime];
+        }
+        
+        // transposition from -12 to +12 ( octaves from 3 to 5 )
+        var transposition = Math.floor(Math.random()*25);
+
+        // when transposition = 12, real transposition is zero.
+        
+        for (i=0; i<12; i++) {
+        	currentRow[i] = currentRow[i] + transposition;
+        }
+        currentText.innerHTML+= " "+(transposition-12);
+
+        draw(currentRow);
+        record();
+        
+	}
+	
+	
+	function shuffle(row){
+    	for (var i = row.length-1; i >=0; i--) {  
+        	var index = Math.floor(Math.random()*(i+1)); 
+        	var tempvalue = row[index]; 
+        	row[index] = row[i]; 
+        	row[i] = tempvalue;
+    	}
+    	return row;
+	}
+	
+		function play(){
+		
+			if (on==0){
+				on=1;
+				makeRow();
+				changeNote();
+			}
+		}
+
+	function changeNote() {
+		if (on==1){
+
+		// random gain between 0.2 and 1.2
+			var gain = 0.2+Math.random();
+			gainNode1.gain.value = gain;
+		
+		// play current note
+			var n = currentRow[note];
+			// calculate frequency: C3 =  0 to -21 | A4 = 21 to 0
+			console.log(n,note);
+			var frequency = 440 * (Math.pow(2, (n-21)/12));
+  
+			tone.frequency.value = frequency;
+			//tone.frequency.value = freqvalues[n];
+
+		        
+		// duration of note
+			var time = currentTime[note] * tempo;
+			
+		// change colour
+			var hue = ((frequency-130.8127826502993)/(987.7666025122483-130.8127826502993));
+
+			hsl2rgb(hue, 1, (gain-0.2));
+			drawDot(n);
+			
+			note++;
+			if (note>11){
+				note=0;
+				chooseRow();
+			}
+			setTimeout(function(){changeNote()},time);
+        }
+	}
+	
+  function draw(what) {
+    // 0 = C3 (first note) , 21 = A4(440) , 35 = B5 (last note)
+    var space = (canvas.width - 100) / 12;
+    var x1 = space;
+    var y = ((canvas.height-1) / 35) * what[0];
+    y -= canvas.height-1;
+    var y1 = Math.abs(y);
+    ctx.beginPath();
+    ctx.lineJoin="round";
+    ctx.moveTo(x1,y1);
+    for (var i=0;i<11;i++){
+          x1 += space;
+          y = ((canvas.height-1) / 35) * what[i+1];
+          y -= (canvas.height-1);
+          y1 = Math.abs(y);
+          ctx.lineTo(x1,y1);
+          }
+    ctx.strokeStyle="rgba(255,255,255,0.4)";
+    ctx.lineWidth=20;
+    ctx.stroke();
+
+  }
+
+  function drawDot(n) {
+    // 0 = C3 (first note) , 21 = A4(440) , 35 = B5 (last note)
+    var space = (canvas.width - 100) / 12;
+    var x1 = space+(note*space);
+    var y = ((canvas.height-1) / 35) * n;
+    y -= canvas.height-1;
+    var y1 = Math.abs(y);
+    ctx.beginPath();
+    ctx.arc(x1,y1,150,0,2*Math.PI);
+    var grd=ctx.createRadialGradient(x1,y1,5,x1,y1,150);
+    var colour = "rgb("+red+","+g+","+b+")"
+    grd.addColorStop(0,colour);
+    grd.addColorStop(1,"rgba(0,0,0,0)");
+    ctx.fillStyle=grd;
+    ctx.fill();
+
+
+  }
+
+	
+	function hsl2rgb(h, s, l){
+
+        	function hue2rgb(p, q, t){
+        	    if(t < 0) t += 1;
+       	     	if(t > 1) t -= 1;
+       	     	if(t < 1/6) return p + (q - p) * 6 * t;
+            	if(t < 1/2) return q;
+            	if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+            	return p;
+        	}
+	
+        	var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        	var p = 2 * l - q;
+        	red = Math.round(255*(hue2rgb(p, q, h + 1/3)));
+        	g = Math.round(255*(hue2rgb(p, q, h)));
+        	b = Math.round(255*(hue2rgb(p, q, h - 1/3)));
+        	
+    		//console.log(Math.round(r * 255),Math.round(g * 255),Math.round(b * 255))
+    		
+    	  //document.body.style.background="rgb("+Math.round(r * 255)+","+Math.round(g * 255)+","+Math.round(b * 255)+")";
+    }
+	
+	function record() {
+		for (var i=0;i<12;i++){
+     			str = str+currentRow[i]+"|"+currentTime[i]+",";
+     			}
+     	//document.getElementById("log").value = str;
+     		}
+     		
+  	function silence() {
+  		tone.frequency.value = 0;
+  		gainNode1.gain.value = 0;
+  		note=0;
+  		on=0;
+  	}
+  
+    </script>
+  </body>
+</html>

@@ -24,4 +24,4 @@ The resulting volume is ultimately constrained by the web-browser algorithmic lo
  
 2016
 
-<p style="text-align: center;"><a class="btn btn-outline-primary" href="https://lucasbattich.com/babel" target="_blank">Access Site</a></p>
+<p style="text-align: center;"><a class="btn btn-outline-primary" href="{{ '/assets/sites/babel/' | relative_url }}" target="_blank">Access Site</a></p>

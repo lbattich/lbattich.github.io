@@ -1,0 +1,43 @@
+var block1=["As Lewis taught us in a classic series of articles ",
+     "Few analytic philosophers have ever denied that ",
+     "On the standard Kripkean modal semantics ",
+     "If sensory experience is veridical, we must posit that ",
+     "Intuitively, it seems obvious that ",
+     "It is a consequence of proper functionalism that ",
+     "It is uniquely puzzling for direct reference theorists that ",
+     "An incredulous stare is the only response we can give to the thesis that ",
+     "Despite Quine's influence, all too many have affirmed that ",
+     "While the contextualist disagrees, we still hold that "];
+
+var block2=[ "remarkably ahistorical analytic metaphysics ",
+     "(the early) Goldman's causal analyses of knowledge ",
+     "both definite descriptions and proper names ",
+     "nearly all the deliverances of normal science ",
+     "trope theories ",
+     "polyadic predicates ",
+     "some quantifications over possible worlds ",
+     "supposed mind/body \"problems\" ",
+     "van Inwagen's mysterianism(s) about free will ",
+     "various Platonic doctrines about universals "];
+
+var block3=["always lead to ",
+     "are fraught with ",
+     "are not a logically sufficient condition for ",
+     "bolster Nozick's radical account of ",
+     "cannot generate ",
+     "Gettierize ",
+     "reduce to ",
+     "suggest a solution vis-à-vis ",
+     "supervene on ",
+     "undermine the plausibility of "];
+
+var block4=["some strong epistemic closure principle.",
+     "an unnacceptably Russelian picture of the world.",
+     "genuinely persuasive counterexamples.",
+     "the lottery paradox.",
+     "Nagelian what-it's-likenesses.",
+     "instances of nomological necessity.",
+     "non-human consciousness.",
+     "something like Rawls' famous Difference Principle.",
+     "stage theory iterations of four-dimensionalism.",
+     "zombie arguments."];

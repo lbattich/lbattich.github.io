@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <script src="vexflow-min.js"></script>
+    <title>Audio test - 12-tone</title>
+  </head>
+  <body>
+  	<p style="font-size:1.5em;">Audio Test. 12-Tone Composition Generator</p>
+  	<br>
+  	<button onclick="makeRow()">make row</button>
+    <button onclick="play()">play</button>
+    <button onclick="silence()">stop</button>
+    <br>
+    <p style="font-size:1.2em;">Prime Row:</p><canvas id="primenotation" width="700" height="100"></canvas> 
+    <br>
+    <p style="font-size:1.2em; color:red;">Now Playing: <span id="current"></span></p>
+    <canvas id="notation" width="700" height="100"></canvas> 
+    <div style="color:red; font-size:1.5em;" width="700"">
+    <span id="dotspan" style="position: relative; left:55px">●</span>
+    </div>
+    <br>
+    <p>Duration of note now playing <input type="text" size="10" id="tm" value=""> <label for="tm"></label></p>
+  	<p>Frequency:  <input type="text" size="7" id="fr" value=""> <label for="fr">Hz</label></p>
+  	<p>Choose gain between 0.3 and 1.2:          <input type="text" size="7" id="gn" value=""> <label for="gn">Gain</label></p>
+  	<p>Choose waveform:                          <input type="text" size="7" id="vw" value=""> <label for="vw">wave</label></p>
+  	
+  	<br>
+  	<p><input type="text" size="25" id="tempo" value="120"> <label for="tempo">Tempo - Choose from 50 (largo) to 220 (prestissimo)</label></p>
+  	<p><input type="text" size="25" id="row" value=""> <label for="row">Prime row</label></p>
+  	<p><input type="text" size="25" id="rowr" value=""> <label for="rowr">Retrograde</label></p>
+  	<p><input type="text" size="25" id="rowi" value=""> <label for="rowi">Inversion</label></p>
+  	<p><input type="text" size="25" id="rowri" value=""> <label for="rowri">Retrograde Inversion</label></p>
+  	<p><input type="text" size="25" id="currentR" value=""> <label for="currentR">Row currently being played</label></p>
+  	<p><input type="text" size="25" id="times" value=""> <label for="times">Duration of each note in the row</label></p>
+  	<p><input type="text" size="25" id="note" value=""> <label for="note">Note currently being played (0=C, 1=C#, etc...)</label></p>
+  	
+  
+  
+    <script>
+    
+    var context = new AudioContext();
+    var tone = context.createOscillator();
+    var gainNode1 = context.createGain(); // Create gain node 1
+    var on=0;
+    var tones = [0,1,2,3,4,5,6,7,8,9,10,11];
+    var freqvalues = [261.63,277.18,293.66,311.13,329.63,349.23,369.99,392,415.30,440,466.16,493.88];
+	var p = new Array();
+    var inv = new Array();
+    var r = new Array();
+    var ri = new Array()
+    var currentRow = new Array();
+    var currentTime = new Array();
+    var currentTimeName = new Array();
+    var note = 0;
+    var tempo = 500;
+    var durations = [4,2,1,0.5,0.25,0.125,0.0625]; //semibreve to 64th-note
+    var durationNames = ["Whole-note","Half-note","Quarter-note","Eighth-note","16th-note","32th-note","64th-note"];
+    var dot = document.getElementById("dotspan");
+    var primecanvas = document.getElementById("primenotation");
+    var canvas = document.getElementById("notation");
+    var currentText = document.getElementById("current");
+    
+    tone.type = 0; // sine wave
+    tone.frequency.value = 0;
+	tone.connect(gainNode1); // Connect sound source tone to gain node 1
+	gainNode1.connect(context.destination);
+	gainNode1.gain.value = 0;
+	tone.start(0);
+	setup(canvas);
+	setup(primecanvas);
+	
+	function setup(where){
+	var renderer = new Vex.Flow.Renderer(where,
+    Vex.Flow.Renderer.Backends.CANVAS);
+  	var ctx = renderer.getContext();
+  	var stave = new Vex.Flow.Stave(10, 0, 500);
+  	stave.addClef("treble").setContext(ctx).draw();
+  	}
+	
+	function drawNotes(who,where) {
+	var canvasCTX = where.getContext("2d");
+	canvasCTX.fillStyle="white";
+	canvasCTX.fillRect(0,0,where.width,where.height);
+	canvasCTX.fill();
+	canvasCTX.fillStyle="black";
+	var renderer = new Vex.Flow.Renderer(where,
+    Vex.Flow.Renderer.Backends.CANVAS);
+
+  	var ctx = renderer.getContext();
+  	var stave = new Vex.Flow.Stave(10, 0, 500);
+  	stave.addClef("treble").setContext(ctx).draw();
+	
+		// Create the notes
+  	var notes = [
+    new Vex.Flow.StaveNote({ keys: ["c/4"], duration: "q" }),
+    new Vex.Flow.StaveNote({ keys: ["c#/4"], duration: "q" }).addAccidental(0, new Vex.Flow.Accidental("#")),
+    new Vex.Flow.StaveNote({ keys: ["d/4"], duration: "q" }),
+    new Vex.Flow.StaveNote({ keys: ["d#/4"], duration: "q" }).addAccidental(0, new Vex.Flow.Accidental("#")),
+    new Vex.Flow.StaveNote({ keys: ["e/4"], duration: "q" }),
+    new Vex.Flow.StaveNote({ keys: ["f/4"], duration: "q" }),
+    new Vex.Flow.StaveNote({ keys: ["f#/4"], duration: "q" }).addAccidental(0, new Vex.Flow.Accidental("#")),
+    new Vex.Flow.StaveNote({ keys: ["g/4"], duration: "q" }),
+    new Vex.Flow.StaveNote({ keys: ["g#/4"], duration: "q" }).addAccidental(0, new Vex.Flow.Accidental("#")),
+    new Vex.Flow.StaveNote({ keys: ["a/4"], duration: "q" }),
+    new Vex.Flow.StaveNote({ keys: ["a#/4"], duration: "q" }).addAccidental(0, new Vex.Flow.Accidental("#")),
+    new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "q" })
+  	];
+  	var notes2 = [];
+  	
+  	// display notes
+  	var all_notes = notes2.concat(notes[who[0]]).concat(notes[who[1]]).concat(notes[who[2]]).concat(notes[who[3]]).concat(notes[who[4]]).concat(notes[who[5]]).concat(notes[who[6]]).concat(notes[who[7]]).concat(notes[who[8]]).concat(notes[who[9]]).concat(notes[who[10]]).concat(notes[who[11]]);
+	Vex.Flow.Formatter.FormatAndDraw(ctx, stave, all_notes);
+  }
+	
+	function makeRow() {
+		p = shuffle(tones);
+		r = Array.prototype.slice.call(p);
+		r.reverse();
+		
+		inv[0] = p[0];
+		for (i = 1; i < 12; i++){
+			inv[i] = inv[i-1] - (p[i] - p[i-1]);
+			
+			if (inv[i] == -1) {inv[i] = 11;}
+			else if (inv[i] == -1) {inv[i] = 11;}
+			else if (inv[i] == -2) {inv[i] = 10;}
+			else if (inv[i] == -3) {inv[i] = 9;}
+			else if (inv[i] == -4) {inv[i] = 8;}
+			else if (inv[i] == -5) {inv[i] = 7;}
+			else if (inv[i] == -6) {inv[i] = 6;}
+			else if (inv[i] == -7) {inv[i] = 5;}
+			else if (inv[i] == -8) {inv[i] = 4;}
+			else if (inv[i] == -9) {inv[i] = 3;}
+			else if (inv[i] == -10) {inv[i] = 2;}
+			else if (inv[i] == -11) {inv[i] = 1;}
+			else if (inv[i] == 12) {inv[i] = 0;}
+			else if (inv[i] == 13) {inv[i] = 1;}
+			else if (inv[i] == 14) {inv[i] = 2;}
+			else if (inv[i] == 15) {inv[i] = 3;}
+			else if (inv[i] == 16) {inv[i] = 4;}
+			else if (inv[i] == 17) {inv[i] = 5;}
+			else if (inv[i] == 18) {inv[i] = 6;}
+			else if (inv[i] == 19) {inv[i] = 7;}
+			else if (inv[i] == 20) {inv[i] = 8;}
+			else if (inv[i] == 21) {inv[i] = 9;}
+			else if (inv[i] == 22) {inv[i] = 10;}
+			else if (inv[i] == 23) {inv[i] = 11;}
+			}
+		
+		ri = Array.prototype.slice.call(inv);
+		ri.reverse();
+		note = 0;
+		
+		// choose tempo between 50 and 230 (BPM) - save value in ms
+		tempo = 60000 / (50 + Math.floor(181*Math.random()));
+		
+		drawNotes(p,primecanvas);
+		chooseRow();
+		
+		document.getElementById("row").value = p; // display
+		document.getElementById("rowr").value = r; // display
+		document.getElementById("rowi").value = inv; // display
+		document.getElementById("rowri").value = ri; // display
+		document.getElementById("tempo").value = 60000/tempo;
+			
+	}
+	
+	//frequencies:
+	//http://www.phy.mtu.edu/~suits/notefreqs.html
+	
+	
+	function chooseRow() {
+		var numb=Math.floor(Math.random()*4);
+        if (numb==0){currentRow = Array.prototype.slice.call(p);currentText.innerHTML="Prime Row";} // prime
+        else if (numb==1){currentRow = Array.prototype.slice.call(r);currentText.innerHTML="Retrograde";} // retro
+        else if (numb==2){currentRow = Array.prototype.slice.call(inv);currentText.innerHTML="Inversion";} // inv
+        else if (numb==3){currentRow = Array.prototype.slice.call(ri);currentText.innerHTML="Retrograde Inversion";} // retro in
+        
+		for (i = 0; i < 12; i++){
+			var rdmTime = Math.floor(7*Math.random());
+			currentTime[i] = durations[rdmTime];
+			currentTimeName[i] = durationNames[rdmTime];
+        }
+        document.getElementById("currentR").value = currentRow; // display
+        document.getElementById("times").value = currentTime; // display
+        drawNotes(currentRow,canvas);
+        
+	}
+	
+	
+	function shuffle(row){
+    	for (var i = row.length-1; i >=0; i--) {  
+        	var index = Math.floor(Math.random()*(i+1)); 
+        	var tempvalue = row[index]; 
+        	row[index] = row[i]; 
+        	row[i] = tempvalue;
+    	}
+    	return row;
+	}
+	
+		function play(){
+		
+			if (on==0){
+				on=1;
+				makeRow();
+				changeNote();
+			}
+		}
+
+	function changeNote() {
+		if (on==1){
+		// random gain between 0.5 and 1.5
+			var gain = 0.5+Math.random();
+			gainNode1.gain.value = gain;
+			document.getElementById("gn").value = gain;
+		
+		// play current note
+			var n = currentRow[note];
+			tone.frequency.value = freqvalues[n];
+			document.getElementById("fr").value = freqvalues[n];
+			document.getElementById("note").value = n;
+			dot.style.left = 55+(42*note)+"px";
+			
+			
+		//random wave shape
+			var wave = Math.floor(4*Math.random());
+			tone.type = wave; 
+			if (wave==0){document.getElementById("vw").value="Sine";}
+        	else if (wave==1){document.getElementById("vw").value="Square";}
+        	else if (wave==2){document.getElementById("vw").value="Sawtooth";}
+        	else if (wave==3){document.getElementById("vw").value="Triangle";}
+        
+		// duration of note
+			var time = currentTime[note] * tempo;
+			document.getElementById("tm").value = currentTimeName[note];
+			
+			note++;
+			if (note==12){
+				note=0;
+				dot.style.left = "55px";
+				chooseRow();
+			}
+			setTimeout(function(){changeNote()},time);
+        }
+	}
+	
+  	function silence() {
+  		tone.frequency.value = 0;
+  		gainNode1.gain.value = 0;
+  		note=0;
+  		on=0;
+  	}
+  
+    </script>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<!--
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+                                  
+ _           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+  
+
+-->
+
+<html>
+  <head>
+
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta name="author" content="Lucas Battich">
+    <meta name="description" content="Lucas Battich">
+    <title>////|||\\\|||///|||\\\|||///|||\\\|||///|||\\\</title>
+    <style type="text/css">
+      @font-face {
+        font-family: FacileSans;
+        font-style: normal;
+        src: url(FacileSans.otf);
+        }
+      #box{
+        position: absolute;
+        display: table;
+        width: 80vw;
+        height: 60vh;
+        top: 40%;
+        left: 10%;
+        text-align: center;
+        font-family: FacileSans, Helvetica, sans-serif;
+        font-size: 12vw;
+        color: white;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+    </div>
+
+    <script language="JavaScript">
+
+      var txt = ["HAPPY","BIRTHDAY","HAPPY","ALICE", "HAPPY","BIRTHDAY","ALICE", "ALICE", ";-)"];
+      var counter = 0;
+      setTimeout(red,300);
+      change();
+
+      function red(){
+        document.getElementById("box").innerHTML = txt[counter];
+        counter++;
+        if (counter == txt.length) {counter =0 ;}
+        setTimeout(blank,100);
+      }
+
+      function blank(){
+        document.getElementById("box").innerHTML = " ";
+        setTimeout(red,200);
+      }
+
+      function change() {
+        r = Math.floor(150*Math.random());
+        g = Math.floor(150*Math.random());
+        b = Math.floor(150*Math.random());
+        document.body.style.backgroundColor = "rgb("+r+","+g+","+b+")";
+        setTimeout(change,40);
+      }
+    </script>
+  </body>
+</html>

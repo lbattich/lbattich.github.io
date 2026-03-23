@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<!--
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+          
+_           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+
+-->
+
+<html>
+	<head>
+		<meta name="author" content="Lucas Battich">
+		<meta name="description" content="Library of Babel Volume Generator by Lucas Battich">
+		<meta content="text/html; charset=utf-8" http-equiv="content-type">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="responsivevoice.js"></script>
+		<script type="text/javascript" src="keywords.js"></script>   
+		<title>Name</title>
+
+		<style type="text/css">
+			@font-face {
+			    font-family: SourceSansProExtra;
+			    font-style: normal;
+			    src: url(SourceSansPro-ExtraLight.otf);
+			}
+			body{background-color: black;
+				background-size: 100vw 100vh;
+			}
+
+			table {
+				position: absolute;
+				width:100%;
+				height:100%;
+				top:0px;
+				left:0px;
+				color: white;
+				background-color: black;
+				font-family: SourceSansPro, "Helvetica Neue", Arial, sans-serif;
+				cursor: none;
+			}
+			td {
+				height: 100%;
+				width: 100%;
+				padding: 10%;
+				text-align: center;
+				vertical-align: middle;
+			}
+			#key{
+				font-family: SourceSansProExtra, "Helvetica Neue", Arial, sans-serif;
+				font-size: 8vw;
+				color: white;
+				transition: color 0.18s;
+				-webkit-transition: color 0.18s;
+			}
+
+
+		</style>
+	</head>
+	<body>
+		<table><td>
+			<p id="key"></p>
+		</table>
+		
+		<script language="javascript" type="text/javascript">
+
+			var voicelist = responsiveVoice.getVoices();
+					
+			window.onload = change();
+
+			// $(document).click(change());
+
+			function start(){
+				$("#key").css("color","white");
+				$("#key").html("Click to start.");
+
+				setTimeout(change,900);
+			}
+
+
+			function change(){
+				$("#key").css("color","black");
+				var randomK = Math.floor(Math.random()*keywords.length);
+				var randomV = Math.floor(Math.random()*voicelist.length);
+				console.log(voicelist[randomV]);
+
+				setTimeout(function() {
+					$("#key").css("color","white");
+					$("#key").html(keywords[randomK])
+					responsiveVoice.speak(keywords[randomK], voicelist[randomV].name);
+				}, 220);
+
+				setTimeout(change,3000);
+			}
+
+			
+		
+		</script>
+	</body>
+</html>

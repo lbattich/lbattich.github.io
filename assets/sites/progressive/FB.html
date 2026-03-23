@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<!--
+_                                
+| |_   _  ___ __ _ ___            
+| | | | |/ __/ _` / __|           
+| | |_| | (_| (_| \__ \           
+|_|\__,_|\___\__,_|___/           
+                                  
+ _           _   _   _      _     
+| |__   __ _| |_| |_(_) ___| |__  
+| '_ \ / _` | __| __| |/ __| '_ \ 
+| |_) | (_| | |_| |_| | (__| | | |
+|_.__/ \__,_|\__|\__|_|\___|_| |_|
+ 
+Progressive Movement Towards Concrete Creation
+-->
+<html>
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="content-type">
+	    <meta name="author" content="Lucas Battich">
+	    <link rel="stylesheet" href="style_pr.css">
+	    <script src="http://code.jquery.com/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="paper-full.js"></script>
+		<script type="text/paperscript" canvas="canvas">
+			var quote;
+			var pos1, pos2, pos3, pos4, pos5, pos6, pos7;
+			var day; // current price in relation to daily performance value 0 -100
+			var year; // current price in relation to yearly performance value 0 -100
+			var inst;
+			var open = false;
+
+			// When user press "P" save the image as a PNG file
+			window.onkeydown = function(event) {
+				var e = event.keyCode;
+				if (e==80 /*p*/){save();}
+			}
+
+			// Group of rectangles 1
+
+			function drawCluster1(centerRect) {
+				var count = quote[0].mc.length - 1;
+				var cookedData = [
+			    	inst / (quote[0].hi.charAt(0) * 60),
+					inst / (quote[0].hi.charAt(1) * 60),
+					inst / (quote[0].hi52.charAt(0) * 60),
+					inst / (quote[0].hi52.charAt(1) * 50),
+					inst / (quote[0].pcls_fix.charAt(0) * 60),
+					inst / (quote[0].pcls_fix.charAt(1) * 50),
+					inst / (quote[0].lo52.charAt(0) * 60),
+					inst / (quote[0].lo52.charAt(1) * 50),
+				];
+				for (var i = 0; i < count; i++) {
+					var rectSize =  new Size(cookedData[i], cookedData[i+1]) * new Size(view.size.width/3, view.size.height/2);
+			        var rect = new Path.Rectangle(centerRect, rectSize);
+			        rect.fillColor =  grey1(cookedData[i] * 30);
+			        rect.shadowColor = grey2(cookedData[i] * 20);
+				    rect.shadowBlur = 1;
+				    rect.shadowOffset = new Point(5, 5);
+			        rect.rotate(+quote[0].op * quote[0].cp_fix);
+			    }
+			}
+
+			// Group of rectangles 2
+
+			function drawCluster2(centerRect) {
+				var count = quote[0].shares.length - 2;
+
+				var cookedData = [
+			    	inst / (quote[0].hi52.charAt(0) * 70),
+					inst / (quote[0].hi52.charAt(1) * 40),
+					inst / (quote[0].op.charAt(0) * 70),
+					inst / (quote[0].op.charAt(1) * 60),
+					inst / (quote[0].shares.charAt(0) * 60),
+					inst / (quote[0].shares.charAt(1) * 70),
+					inst / (quote[0].l_fix.charAt(0) * 60),
+					inst / (quote[0].l_fix.charAt(1) * 50),
+				];
+
+				for (var i = 0; i < count; i++) {
+			        var rectSize =  new Size(cookedData[i], cookedData[i+1]) * new Size(view.size.width/6, view.size.height/1.2);
+			        var rect = new Path.Rectangle(centerRect, rectSize);
+			        rect.fillColor =  grey2(cookedData[i] * 30);
+			        rect.shadowColor = grey1(cookedData[i] * 20);
+				    rect.shadowBlur = 1;
+				    rect.shadowOffset = new Point(5, 5);
+			        rect.rotate(+quote[0].mc.charAt(0) * quote[0].pcls_fix);
+			    }
+			}
+
+			// Circle 1
+
+			function drawCircle1(centerC) {
+			    var change  = Math.abs(+quote[0].cp_fix > 1 ? quote[0].cp_fix / 15 : quote[0].cp_fix * 10);
+			    var radius = (day / 100) * (view.size.height / 3) * change;
+			    radius = radius > (view.size.height/2) ? radius / 3 : radius;
+			    radius = radius > (view.size.height/2) ? radius / 2.5 : radius;
+			    var circle = new Path.Circle(centerC, radius);
+			    if (radius > (view.size.height/2.5)) {
+			    	var offset = circle.position - view.center;
+			    	circle.position += offset * 2;
+			    }
+			    circle.fillColor = 'red';
+			    var hueSeed = Math.abs(+quote[0].cp_fix);
+			    circle.fillColor.hue = red(hueSeed / 2);
+			    circle.fillColor.brightness = (quote[0].mc.charAt(0) / 30) + 0.8;
+			    circle.opacity = (quote[0].inst_own.charAt(0) / 20) + 0.5;
+			}
+
+			// Circle 2
+
+			function drawCircle2(centerC) {
+			    var price  = +quote[0].l_fix > 100 ? quote[0].l_fix / 800 : quote[0].l_fix / 80;
+			    var radius = (day / 100) * (view.size.height / 3) * price;
+			    var circle = new Path.Circle(centerC, radius);
+			    circle.fillColor = 'red';
+			    var hueSeed = Number(quote[0].shares.charAt(0) + quote[0].lo52.charAt(0));
+			    circle.fillColor.hue = red(hueSeed / 100);
+			    circle.fillColor.brightness = (quote[0].pcls_fix.charAt(0) / 40) + 0.75;
+			    circle.opacity = (quote[0].mc.charAt(0) / 20) + 0.5;
+			}
+
+			// Hexagon
+
+			function drawHexagon(centerH) {
+				var hexagon = new Path.RegularPolygon({
+				    center: centerH,
+				    sides: 6,
+				    radius: view.size.height / 10,
+				    fillColor: 'black'
+				});
+
+				var triangle = new Path();
+				triangle.add(hexagon.segments[0].point);
+				triangle.add(hexagon.segments[1].point);
+				triangle.add(centerH);
+				triangle.add(hexagon.segments[5].point);
+				triangle.closed = true;
+				triangle.fillColor = 'white';
+
+				var copy = triangle.clone();
+				copy.opacity = 0.5;
+				copy.rotate(-120, centerH);
+
+				var groupH = new Group(hexagon, triangle, copy);
+				groupH.rotate(+quote[0].l, centerH);
+				
+				var change  = Math.abs(+quote[0].cp_fix > 1 ? +quote[0].cp_fix : +quote[0].cp_fix * 10);
+				change = change > 3 ? change / 3 : change;
+				change = change > 3 ? change / 2 : change;
+				groupH.scale(change + 0.5, centerH); 
+				if (change > 2) {
+			    	var offset = groupH.position - view.center;
+			    	groupH.position += offset / 2;
+			    }
+			}
+
+			// Grid
+
+			 function drawGrid(centerG) {
+				var cells = 20;
+				var cellWidth = view.size.height / 40;
+				var grid = new Path.Rectangle(centerG, new Size(cellWidth * cells, cellWidth * cells));
+				var pLine = new Path.Line(topPoint, bottomPoint);
+				var groupG = new Group(grid, pLine);
+
+				for (var i = 0; i <= cells; i++) {
+			        var xPos = grid.bounds.left + (i * cellWidth);
+			        var topPoint = new Point(xPos, grid.bounds.top);
+			        var bottomPoint = new Point(xPos, grid.bounds.bottom - (i * cellWidth));
+			        var vLine = new Path.Line(topPoint, bottomPoint);
+			        groupG.addChild(vLine);
+			        var yPos = grid.bounds.top + i * cellWidth;
+			        var leftPoint = new Point(grid.bounds.left, yPos);
+			        var rightPoint = new Point(grid.bounds.right - (i * cellWidth), yPos);
+			        var hLine = new Path.Line(leftPoint, rightPoint);
+			        groupG.addChild(hLine);
+			    }
+
+			    grid.removeSegment(3);
+			    groupG.strokeColor = 'red';
+				groupG.skew(-30, -30);
+				groupG.rotate(225, centerG);
+				groupG.scale((+quote[0].cp_fix/5) + 0.1, centerG);
+			}
+
+			// Arc
+
+			function drawArc(centerArc) {
+			    var offset = view.size.height / 6;
+			    var from = new Point(centerArc.x-offset, centerArc.y-offset);
+			    var through = new Point(centerArc.x+(offset*0.6666), centerArc.y-(offset*0.6666));
+			    var to = new Point(centerArc.x+offset, centerArc.y+offset);
+			    var arcSeg = Path.Arc(from, through, to);
+			    arcSeg.strokeColor = 'red';
+			    var hueSeed = Number(quote[0].shares.charAt(0) + quote[0].lo52.charAt(0));
+			    arcSeg.strokeColor.hue = red2();
+			    arcSeg.strokeColor.brightness = (quote[0].shares.charAt(0) / 40) + 0.75;
+			    arcSeg.opacity = (quote[0].hi52.charAt(0) / 20) + 0.5;
+			    arcSeg.scale(0.7, centerArc);
+			    arcSeg.strokeWidth = (quote[0].mc.charAt(0) / 10) * (view.size.height / 6);
+			    var jumble = +quote[0].l_fix * +quote[0].lo52 * +quote[0].op / (+quote[0].lo + +quote[0].hi52);
+			    arcSeg.rotate(jumble, centerArc);
+			}
+
+			// Set the stage:
+
+			function stage() {
+				project.activeLayer.removeChildren();
+				// Background colour
+
+				var back = new Path.Rectangle({
+				    size: [view.size.width, view.size.height],
+				    fillColor: "#DCDCDC"
+				});
+				back.position = view.center;
+
+				var centerStage = view.center;	// use for centred placement
+				var angleSeed = "0." + quote[0].shares.charAt(0);
+				var markCap = "0." + quote[0].mc.charAt(0);
+				inst = quote[0].inst_own.substr(0,2);
+				var angle = 360 * angleSeed; // shares outstanding / 10
+				var difference = ((quote[0].l - quote[0].lo52) * view.size.width) / (quote[0].hi52 - quote[0].lo52);
+
+				// triangle
+				var three = new Path.RegularPolygon({
+				    center: centerStage,
+				    sides: 3,
+				    radius: view.size.height / 2.9,
+				});
+				three.skew(-inst/10, -quote[0].eps); // institutional ownship %
+				three.rotate(angle);
+				three.scale(0.5 + year/100);
+				three.position.x -= difference/20;
+
+				// square
+				var four = new Path.RegularPolygon({
+				    center: centerStage,
+				    sides: 4,
+				    radius: view.size.height / 4,
+				});
+				four.skew(-quote[0].eps, -inst/10); // institutional ownship %
+				four.rotate(-angle);
+				four.scale(0.8 + day/100);
+				four.position.x += difference/20;
+
+				// order of elements
+				var nameT = [
+					quote[0].name.charCodeAt(0),
+					quote[0].name.charCodeAt(1),
+					quote[0].name.charCodeAt(2)
+				];
+				var nameF = [
+					quote[0].name.charCodeAt(3),
+					quote[0].name.charCodeAt(4),
+					quote[0].name.charCodeAt(5),
+					quote[0].name.charCodeAt(6)
+				];
+				var indexT = nameT.slice();
+				indexT.sort(function(a, b){return a-b}); 
+				var indexF = nameF.slice();
+				indexF.sort(function(a, b){return a-b}); 
+
+				var pos1X = nameT.indexOf(indexT[0]);
+				var pos2X = nameT.indexOf(indexT[1]);
+				var pos3X = nameT.indexOf(indexT[2]);
+				var pos4X = nameF.indexOf(indexF[0]);
+				var pos5X = nameF.indexOf(indexF[1]);
+				var pos6X = nameF.indexOf(indexF[2]);
+				var pos7X = nameF.indexOf(indexF[3]);
+
+				pos1 = new Point(three.segments[pos1X].point);
+				pos2 = new Point(three.segments[pos2X].point);
+				pos3 = new Point(three.segments[pos3X].point);
+				pos4 = new Point(four.segments[pos4X].point);
+				pos5 = new Point(four.segments[pos5X].point);
+				pos6 = new Point(four.segments[pos6X].point);
+				pos7 = new Point(four.segments[pos7X].point);
+				insertElements();
+			}
+
+			function insertElements() {
+				drawCluster1(pos1);
+				drawCircle2(pos4);
+				drawHexagon(pos3);
+				drawCluster2(pos7);
+				drawCircle1(pos2);
+				drawGrid(pos5);
+				drawArc(pos6);
+			}
+
+			// On mouse click: get a new quote and redraw all elements:
+
+			function onMouseUp(event) {
+				getQuote();
+			}
+
+			function onFrame(event) {}
+
+			view.onResize = function(event) {
+			    project.activeLayer.position = view.center;
+			    project.activeLayer.bounds = view.size;
+			}
+
+			function grey1(seed) {
+			    var mix = Number(quote[0].hi.charAt(0) + quote[0].shares.charAt(0));
+			    var a = (seed * inst * 256) / 2000;
+			    if (a > 256 || a < 1) {a = (inst * 256) / 100;}
+			    var colour = "rgb("+a+","+a+","+a+")";
+			    return colour;
+			}
+
+			function grey2(seed) {
+			    var mix = Number(quote[0].shares.charAt(0) + quote[0].hi.charAt(0));
+			    var a = ((inst / 10) * seed * mix * 256) / 40000;
+			    if (a > 256 || a < 1) {a = (inst * 256) / 100;}
+			    var colour = "rgb("+a+","+a+","+a+")";
+			    return colour;
+			}
+
+			function red(seed) {
+			    var mix = Number(quote[0].hi.charAt(0) + quote[0].shares.charAt(0));
+			    var a = (seed * inst * 60) / 200;
+			    if (a > 60 || a < 0.5) {a = (inst * 60) / 100;}
+			    return a;
+			}
+
+			function red2() {
+			    var mix = Number(quote[0].mc.charAt(0) + quote[0].l.charAt(0));
+			    var a = (mix * day * year * 60) / 100000;
+			    if (a > 100) {a = a / 3;}
+			    if (a > 60 || a < 5) {a = (inst * 60) / 100;}
+			    return a;
+			}
+
+			function save() { 
+				var d = document.getElementById("canvas").toDataURL("image/png");
+				var w = window.open();
+				var link = w.document.createElement('a');
+				link.href = d;
+				link.download="print.png";
+				if (document.createEvent) {
+				    var e = document.createEvent('MouseEvents');
+				    e.initEvent('click' ,true ,true);
+				    link.dispatchEvent(e);
+				    return true;
+			    }
+			}
+
+			//Get live quote
+
+			function getQuote() {
+				var url = 'http://finance.google.com/finance/info?infotype=infoquoteall&q=NASDAQ:FB&callback=?';
+				$.getJSON(url, function(data) {
+					quote = data;
+					day = ((quote[0].l - quote[0].lo) * 100) / (quote[0].hi - quote[0].lo);
+					year = ((quote[0].l - quote[0].lo) * 100) / (quote[0].hi - quote[0].lo);
+					stage();
+				});
+
+				if (open) {
+					setTimeout(getQuote, 2000);
+				}
+
+			}
+
+			// clock
+
+			function startTime() {
+			    var today = new Date();
+			    var hours = today.getUTCHours();
+			    var min = today.getMinutes();
+			    var weekDay = today.getUTCDay();
+			    var displayDay = today.toLocaleDateString();
+			    var time = today.toLocaleTimeString();
+			    document.getElementById("date").innerHTML = displayDay + " " + time;
+
+			    //NASDAQ/NYSE opens 9:30 - 16:00 ET = 13:50 - 20:00 UTC (Summer)
+			    //weekday  0==Sunday 1==Monday 2==Tuesday 3==Wednesday 4==Thurs 5==Friday 6==Sat
+			    
+				if (((hours == 13 && min > 29) || hours > 13) && hours < 20 && weekDay != 6 && weekDay != 7) {
+					document.getElementById("market").innerHTML = "OPEN";
+					open = true;
+				}
+				else {
+					document.getElementById("market").innerHTML = "CLOSED";
+					open = false;
+				}
+
+			    setTimeout(startTime, 500);
+			}
+
+		    window.onload =	getQuote();
+		    startTime();
+		</script>
+	</head>
+	<body>
+		<div class="foot">
+			<section id="date">14/06/2016 21:12:43</section>
+			<section id="ticker">NASDAQ:FB</section>
+			<section>MARKET IS <span id="market">CLOSED</span></section>
+		</div>
+		<canvas id="canvas" resize></canvas>
+	</body>
+</html>

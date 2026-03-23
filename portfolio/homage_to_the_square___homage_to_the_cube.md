@@ -14,8 +14,8 @@ nav: 2
 ---
 ## Homage to the Square / Homage to the Cube
 
-<p style="text-align: center;"><a class="btn btn-outline-primary" href="http://lucasbattich.com/square" target="_blank">Homage to the Square (After Josef Albers)</a></p>
-<p style="text-align: center;"><a class="btn btn-outline-primary" href="http://lucasbattich.com/cube" target="_blank">Homage to the Cube (After Josef Albers)</a></p>
+<p style="text-align: center;"><a class="btn btn-outline-primary" href="{{ '/assets/sites/square/' | relative_url }}" target="_blank">Homage to the Square (After Josef Albers)</a></p>
+<p style="text-align: center;"><a class="btn btn-outline-primary" href="{{ '/assets/sites/cube/' | relative_url }}" target="_blank">Homage to the Cube (After Josef Albers)</a></p>
 
 These two web-based works bring a generative and semi-random approach to Joseph Albers schematic experimentations on colour. These works are an attempt to expand his colour investigations beyond the canvas or print based mediums and into the digital screen, while interfering with the creative instinct of the master colourist.
 

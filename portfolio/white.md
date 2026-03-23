@@ -22,4 +22,4 @@ Navigate by using the arrow keys or simply by mouse-clicking.
 
 – David Batchelor, _Chromophobia_
 
-<p style="text-align: center;"><a class="btn btn-outline-primary" href="http://lucasbattich.com/white/" target="_blank">Access Work Online</a></p>
+<p style="text-align: center;"><a class="btn btn-outline-primary" href="{{ '/assets/sites/white/' | relative_url }}" target="_blank">Access Work Online</a></p>
