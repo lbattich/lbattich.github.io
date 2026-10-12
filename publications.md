@@ -6,19 +6,6 @@ layout: default
 permalink: /publications/
 ---
 
-##### Coming soon
-
-- Battich, L. (in preparation). The sense of reality in perception.
-<br><button class="btn btn-link btn-sm">Abstract ↓</button>
-<p style="display: none;" class='abstract'>
-  When we perceive the world, we see shapes, colours, and movement, experience textures through touch, and hear the timbre and frequency of sounds. But there is more to perception than sensory contents: we also have the feeling that the things we perceive are real and not, for example, merely imagined or hallucinated. We have a sense of reality. This sense is often taken for granted, but what makes an experience feel real? What gives a sense of reality to our perceptual experiences? In this paper, I analyse the construct of the sense of reality in perception, and discuss assumptions and potentially controversial points in the construct. My aim is to provide a conceptual map of the sense of reality in perception and its relation to other phenomena, including the feeling of presence, reality monitoring in memory, and the conceptual judgement of reality. I propose an account of the sense of reality as the phenomenal mark that accompanies the process or mechanism of distinguishing between self-generated versus externally triggered activity in perception. I suggest that this contrast goes beyond the traditional focus on differences between perception and mental imagery.</p>
-
-- From joint perceptual attention to joint mental imagery.
-
-- Paper on the sense of reality and the role of intersubjectivity.
-
-- Metaphilosophical paper on methods in philosophy of mind.
-
 
 ##### Peer-reviewed publications
 
@@ -80,6 +67,21 @@ From playing basketball to ordering at a food counter, we frequently and effortl
 <br><button class="btn btn-link btn-sm">Abstract ↓</button>
 <p style="display: none;" class='abstract'>
   The field of language evolution has recently made Gricean pragmatics central to its task, particularly within comparative studies between human and non-human primate communication. The standard model of Gricean communication requires a set of complex cognitive abilities, such as belief attribution and understanding nested higher-order mental states. On this model, non-human primate communication is then of a radically different kind to ours. Moreover, the cognitive demands in the standard view are also too high for human infants, who nevertheless do engage in communication. In this paper I critically assess the standard view and contrast it with an alternative, minimal model of Gricean communication recently advanced by Richard Moore. I then raise two objections to the minimal model. The upshot is that this model is conceptually unstable and fails to constitute a suitable alternative as a middle ground between full-fledged human communication and simpler forms of non-human animal communication.</p>
+
+
+##### Coming soon/drafts
+
+- Battich, L. (in preparation). The sense of reality in perception.
+<br><button class="btn btn-link btn-sm">Abstract ↓</button>
+<p style="display: none;" class='abstract'>
+  When we perceive the world, we see shapes, colours, and movement, experience textures through touch, and hear the timbre and frequency of sounds. But there is more to perception than sensory contents: we also have the feeling that the things we perceive are real and not, for example, merely imagined or hallucinated. We have a sense of reality. This sense is often taken for granted, but what makes an experience feel real? What gives a sense of reality to our perceptual experiences? In this paper, I analyse the construct of the sense of reality in perception, and discuss assumptions and potentially controversial points in the construct. My aim is to provide a conceptual map of the sense of reality in perception and its relation to other phenomena, including the feeling of presence, reality monitoring in memory, and the conceptual judgement of reality. I propose an account of the sense of reality as the phenomenal mark that accompanies the process or mechanism of distinguishing between self-generated versus externally triggered activity in perception. I suggest that this contrast goes beyond the traditional focus on differences between perception and mental imagery.</p>
+
+- From joint perceptual attention to joint mental imagery.
+
+- Paper on the sense of reality and the role of intersubjectivity.
+
+- Metaphilosophical paper on methods in philosophy of mind.
+
 
 
 ##### Media publications
