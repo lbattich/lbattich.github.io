@@ -71,9 +71,9 @@ From playing basketball to ordering at a food counter, we frequently and effortl
 
 ##### Coming soon/drafts
 
-- Battich, L. (in preparation). The sense of reality in perception. <button class="btn btn-link btn-sm" style="color:grey;">Abstract ↓</button> <p style="display: none;" class='abstract'>
+- Battich, L. (in preparation). The sense of reality in perception. <button class="btn btn-link btn-sm" style="color:grey;">Abstract ↓</button>
+<p style="display: none;" class='abstract'>
   When we perceive the world, we see shapes, colours, and movement, experience textures through touch, and hear the timbre and frequency of sounds. But there is more to perception than sensory contents: we also have the feeling that the things we perceive are real and not, for example, merely imagined or hallucinated. We have a sense of reality. This sense is often taken for granted, but what makes an experience feel real? What gives a sense of reality to our perceptual experiences? In this paper, I analyse the construct of the sense of reality in perception, and discuss assumptions and potentially controversial points in the construct. My aim is to provide a conceptual map of the sense of reality in perception and its relation to other phenomena, including the feeling of presence, reality monitoring in memory, and the conceptual judgement of reality. I propose an account of the sense of reality as the phenomenal mark that accompanies the process or mechanism of distinguishing between self-generated versus externally triggered activity in perception. I suggest that this contrast goes beyond the traditional focus on differences between perception and mental imagery.</p>
-
 - From joint perceptual attention to joint mental imagery.
 
 - Paper on the sense of reality and the role of intersubjectivity.
