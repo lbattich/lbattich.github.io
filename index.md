@@ -23,7 +23,7 @@ Apart from philosophy and brain sciences, I’m passionate about hiking, rock cl
 -----------------------
 
 **Contact:**
-lucas.battich [at] gmail.com
+lucas.battich [at] uni-tuebingen.de
 
 Universität Tübingen  
 Philosophisches Seminar  
