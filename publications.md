@@ -10,7 +10,7 @@ permalink: /publications/
 ##### Peer-reviewed publications
 
 
-- Battich, L. (2026). **Joint aesthetic attention**. *Synthese*. doi: [10.1007/s11229-026-05867-5. ](https://doi.org/10.1007/s11229-026-05867-5). [[PDF]({{ "/assets/pdf/Battich_Joint_aesthetic_attention.pdf" | relative_url }})]
+- Battich, L. (2026). **Joint aesthetic attention**. *Synthese*. doi: [10.1007/s11229-026-05867-5](https://doi.org/10.1007/s11229-026-05867-5). [[PDF]({{ "/assets/pdf/Battich_Joint_aesthetic_attention.pdf" | relative_url }})]
 <br><button class="btn btn-link btn-sm" style="color:grey;">Abstract ↓</button>
 <p style="display: none;" class='abstract'>
   We experience and appreciate together with others the beauty of a sunset or an artwork, the sadness of a musical piece. Admiring the same aesthetic properties of objects together with others is a ubiquitous human activity. At the same time, it is commonly held that aesthetic properties constitutively depend on a subjective response. This brings up a particular challenge: How can we jointly focus towards the same aesthetic property when it is itself dependent on our separate responses? In this paper, I provide an analysis of joint aesthetic attention and explain how we can engage in it. I propose a multiple coordinative profile: co-attenders coordinate their perceptual attention to the object, but also coordinate the specific way they attend to it, and their specific responsive profiles. I advance a novel capacities-based probabilistic account of how this multiple coordination is possible.</p>
